@@ -19,3 +19,4 @@ jobs:
       - run: python -m zeno_speccheck evolve examples/deflationary_exit.json --max-evaluations 512 --out runs/exit.json
       - run: python -m zeno_speccheck replay examples/deflationary_exit.json runs/exit.json
       - run: python -m zeno_speccheck agent-request examples/deflationary_exit.json --report runs/exit.json --out runs/next-request.json
+      - run: python scripts/run_exit_demo.py --out runs/exit-demo

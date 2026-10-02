@@ -29,7 +29,7 @@ def proposals(project: Project, raw: object | None) -> list[dict]:
 
 def evolve(project: Project, *, seed: int = 0, generations: int = 8,
            population: int = 8, max_evaluations: int = 256,
-           proposal_data: object | None = None) -> dict:
+           proposal_data: object | None = None, warm_start: list[str] | None = None) -> dict:
     if not (type(seed) is int and type(generations) is int and 0 <= generations <= 100
             and type(population) is int and 1 <= population <= 32
             and type(max_evaluations) is int and 1 <= max_evaluations <= 4096):
@@ -37,6 +37,11 @@ def evolve(project: Project, *, seed: int = 0, generations: int = 8,
     if project.seed.size() > 63:
         raise ValueError("search seed exceeds 63 AST nodes")
     offered = proposals(project, proposal_data)
+    if warm_start is not None and (not isinstance(warm_start, list) or len(warm_start) > 32):
+        raise ValueError("warm start must contain at most 32 formulas")
+    retained = [parse(formula, project.variables) for formula in (warm_start or [])]
+    if any(expr.size() > 63 for expr in retained):
+        raise ValueError("warm-start candidate exceeds 63 AST nodes")
     rng, records, semantic, seen, archive = random.Random(seed), [], {}, set(), {}
     formula_by_id = {}
     duplicate_count = 0
@@ -73,6 +78,9 @@ def evolve(project: Project, *, seed: int = 0, generations: int = 8,
                 record["check"]["formula"])
 
     evaluate(project.seed, [], "seed", 0)
+    for expr in retained:
+        # Retained formulas are checked again; a prior verdict grants no credit.
+        evaluate(expr, [], "retained_candidate", 0)
     for item in offered:
         evaluate(parse(item["formula"], project.variables), [], "agent_proposal", 0)
     completed_generations = 0
@@ -109,7 +117,7 @@ def evolve(project: Project, *, seed: int = 0, generations: int = 8,
     ranked = sorted(records, key=rank)
     passing = [r for r in ranked if r["check"]["status"] == "pass"]
     winner = passing[0] if passing else None
-    return {"schema": "zeno/evolution-report/v1", "project_digest": project.identity,
+    result = {"schema": "zeno/evolution-report/v1", "project_digest": project.identity,
             "status": "candidate_found" if winner else "no_candidate_found",
             "search": {"seed": seed, "generations": generations, "population": population,
                        "max_evaluations": max_evaluations, "completed_generations": completed_generations,
@@ -122,3 +130,6 @@ def evolve(project: Project, *, seed: int = 0, generations: int = 8,
             "limitations": ["Finite Boolean relations only; no temporal or arithmetic proof.",
                             "Search is incomplete; no candidate found does not establish impossibility.",
                             "Passing means conformance to the frozen requirements, not completeness of intent."]}
+    if retained:
+        result["warm_start"] = [str(expr) for expr in retained]
+    return result

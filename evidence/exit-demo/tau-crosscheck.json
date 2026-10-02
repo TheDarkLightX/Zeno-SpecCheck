@@ -1,0 +1,131 @@
+{
+  "check": {
+    "approval": "not_granted",
+    "backend": {
+      "log": "\nTemporal normalization of G specification reached fixpoint after 0 steps, yielding the result: \ni1[t]:sbf' != 0 && i1[t]:sbf != 0 || i2[t]:sbf != 0 && i2[t]:sbf' != 0 || i3[t]:sbf' != 0 && i3[t]:sbf != 0 || (o1[t]:sbf = 0 || o1[t]:sbf' = 0) && (o2[t]:sbf' = 0 || o2[t]:sbf = 0) && (o1[t]:sbf' != 0 || i1[t]:sbf' = 0 && (i3[t]:sbf' = 0 || i2[t]:sbf' = 0)) && (i1[t]:sbf' != 0 || o1[t]:sbf' = 0 || i3[t]:sbf' != 0 && i2[t]:sbf' != 0) && (o2[t]:sbf' != 0 || i1[t]:sbf' = 0 && o1[t]:sbf' != 0) && (o2[t]:sbf' = 0 || i1[t]:sbf' != 0 || o1[t]:sbf' = 0)\n\n",
+      "queries": [
+        {
+          "code_names": [
+            "Time.",
+            "Time.",
+            "Time.",
+            "Time.",
+            "Time.",
+            "Time.",
+            "Time.",
+            "Time.",
+            "Time.",
+            "Time.",
+            "Time.",
+            "Time.",
+            "Time.",
+            "Time.",
+            "Time.",
+            "Time.",
+            "Time."
+          ],
+          "errors": "[]",
+          "formula": "always (((i1[t]:sbf = 0:sbf || i1[t]:sbf = 1:sbf) && (i2[t]:sbf = 0:sbf || i2[t]:sbf = 1:sbf) && (i3[t]:sbf = 0:sbf || i3[t]:sbf = 1:sbf) && T) -> ((o1[t]:sbf = 0:sbf || o1[t]:sbf = 1:sbf) && (o2[t]:sbf = 0:sbf || o2[t]:sbf = 1:sbf) && (((o1[t]:sbf = 1:sbf) <-> ((i1[t]:sbf = 1:sbf) && ((i2[t]:sbf = 1:sbf) || (i3[t]:sbf = 1:sbf)))) && ((o2[t]:sbf = 1:sbf) <-> ((i1[t]:sbf = 1:sbf) && !((o1[t]:sbf = 1:sbf))))))).",
+          "has_error": false,
+          "id": "$realizability",
+          "operation": "realizable",
+          "report": "\u001b[39mnormalize:\u001b[0m                                               \u001b[39m494\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\t\u001b[2mnormalize:\u001b[0m                                       \u001b[2m368\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\t\t\u001b[39meliminate_arithmetic_and_quantifiers:\u001b[0m    \u001b[39m238\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\t\t\u001b[2mnormalize_temporal_quantifiers:\u001b[0m          \u001b[2m111\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\t\u001b[39mexpand_definitions:\u001b[0m                               \u001b[39m12\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\u001b[2mexpression_paths:\u001b[0m\n\t\u001b[39malways_continuation:\u001b[0m                               \u001b[39m0\u001b[0m  \u001b[39mms\u001b[0m\n\t\t\u001b[2meliminate_arithmetic_and_quantifiers:\u001b[0m  \u001b[2m10.53\u001b[0m  \u001b[2mms\u001b[0m\n\t\t\u001b[39mterm_boole_normal_form:\u001b[0m                    \u001b[39m0\u001b[0m  \u001b[39mms\u001b[0m\n\t\t\u001b[2meliminate_arithmetic_and_quantifiers:\u001b[0m    \u001b[2m212\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\t\t\u001b[39mterm_boole_normal_form:\u001b[0m                 \u001b[39m1.18\u001b[0m  \u001b[39mms\u001b[0m\n\t\t\u001b[2meliminate_arithmetic_and_quantifiers:\u001b[0m    \u001b[2m226\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\t\t\u001b[39mterm_boole_normal_form:\u001b[0m                    \u001b[39m0\u001b[0m  \u001b[39mms\u001b[0m\n\t\t\u001b[2meliminate_arithmetic_and_quantifiers:\u001b[0m   \u001b[2m2.14\u001b[0m  \u001b[2mms\u001b[0m\n\t\t\u001b[39mterm_boole_normal_form:\u001b[0m                    \u001b[39m0\u001b[0m  \u001b[39mms\u001b[0m\n\t\t\u001b[2meliminate_arithmetic_and_quantifiers:\u001b[0m    \u001b[2m224\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\t\t\u001b[39mterm_boole_normal_form:\u001b[0m                 \u001b[39m1.10\u001b[0m  \u001b[39mms\u001b[0m\n",
+          "value": true
+        },
+        {
+          "code_names": [
+            "Time.",
+            "Time.",
+            "Time.",
+            "Time.",
+            "Time.",
+            "Time.",
+            "Time.",
+            "Time.",
+            "Time.",
+            "Time.",
+            "Time.",
+            "Time.",
+            "Time.",
+            "Time.",
+            "Time."
+          ],
+          "errors": "[]",
+          "formula": "(always (((i1[t]:sbf = 0:sbf || i1[t]:sbf = 1:sbf) && (i2[t]:sbf = 0:sbf || i2[t]:sbf = 1:sbf) && (i3[t]:sbf = 0:sbf || i3[t]:sbf = 1:sbf) && T) -> ((o1[t]:sbf = 0:sbf || o1[t]:sbf = 1:sbf) && (o2[t]:sbf = 0:sbf || o2[t]:sbf = 1:sbf) && (((o1[t]:sbf = 1:sbf) <-> ((i1[t]:sbf = 1:sbf) && ((i2[t]:sbf = 1:sbf) || (i3[t]:sbf = 1:sbf)))) && ((o2[t]:sbf = 1:sbf) <-> ((i1[t]:sbf = 1:sbf) && !((o1[t]:sbf = 1:sbf)))))))) -> (always (((i1[t]:sbf = 0:sbf || i1[t]:sbf = 1:sbf) && (i2[t]:sbf = 0:sbf || i2[t]:sbf = 1:sbf) && (i3[t]:sbf = 0:sbf || i3[t]:sbf = 1:sbf) && T) -> ((o1[t]:sbf = 0:sbf || o1[t]:sbf = 1:sbf) && (o2[t]:sbf = 0:sbf || o2[t]:sbf = 1:sbf) && ((o1[t]:sbf = 1:sbf) <-> ((i1[t]:sbf = 1:sbf) && ((i2[t]:sbf = 1:sbf) || (i3[t]:sbf = 1:sbf))))))).",
+          "has_error": false,
+          "id": "EXIT-1",
+          "operation": "valid",
+          "report": "\u001b[39mcalculate_fixed_points:\u001b[0m                           \u001b[39m28\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\u001b[2mapply_rec_relations:\u001b[0m                               \u001b[2m3\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\u001b[39mnormalize:\u001b[0m                                      \u001b[39m2.93\u001b[0m  \u001b[39mms\u001b[0m\n\t\u001b[2meliminate_arithmetic_and_quantifiers:\u001b[0m    \u001b[2m357\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\t\u001b[39mnormalize_temporal_quantifiers:\u001b[0m         \u001b[39m2.51\u001b[0m  \u001b[39mms\u001b[0m\n\u001b[2mexpand_definitions:\u001b[0m                               \u001b[2m18\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\u001b[39meliminate_arithmetic_and_quantifiers:\u001b[0m              \u001b[39m5\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\u001b[2mnormalize_temporal_quantifiers:\u001b[0m                    \u001b[2m1\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\u001b[39meliminate_arithmetic_and_quantifiers:\u001b[0m            \u001b[39m427\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\u001b[2mnormalize_temporal_quantifiers:\u001b[0m                 \u001b[2m1.73\u001b[0m  \u001b[2mms\u001b[0m\n\u001b[39mnormalize:\u001b[0m                                      \u001b[39m1.50\u001b[0m  \u001b[39mms\u001b[0m\n\t\u001b[2meliminate_arithmetic_and_quantifiers:\u001b[0m    \u001b[2m449\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\t\u001b[39mnormalize_temporal_quantifiers:\u001b[0m         \u001b[39m1.02\u001b[0m  \u001b[39mms\u001b[0m\n\u001b[2mexpand_definitions:\u001b[0m                               \u001b[2m19\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\u001b[39mexpression_paths:\u001b[0m\n",
+          "value": true
+        },
+        {
+          "code_names": [
+            "Time.",
+            "Time.",
+            "Time.",
+            "Time.",
+            "Time.",
+            "Time.",
+            "Time.",
+            "Time.",
+            "Time.",
+            "Time.",
+            "Time.",
+            "Time.",
+            "Time."
+          ],
+          "errors": "[]",
+          "formula": "(always (((i1[t]:sbf = 0:sbf || i1[t]:sbf = 1:sbf) && (i2[t]:sbf = 0:sbf || i2[t]:sbf = 1:sbf) && (i3[t]:sbf = 0:sbf || i3[t]:sbf = 1:sbf) && T) -> ((o1[t]:sbf = 0:sbf || o1[t]:sbf = 1:sbf) && (o2[t]:sbf = 0:sbf || o2[t]:sbf = 1:sbf) && (((o1[t]:sbf = 1:sbf) <-> ((i1[t]:sbf = 1:sbf) && ((i2[t]:sbf = 1:sbf) || (i3[t]:sbf = 1:sbf)))) && ((o2[t]:sbf = 1:sbf) <-> ((i1[t]:sbf = 1:sbf) && !((o1[t]:sbf = 1:sbf)))))))) -> (always (((i1[t]:sbf = 0:sbf || i1[t]:sbf = 1:sbf) && (i2[t]:sbf = 0:sbf || i2[t]:sbf = 1:sbf) && (i3[t]:sbf = 0:sbf || i3[t]:sbf = 1:sbf) && T) -> ((o1[t]:sbf = 0:sbf || o1[t]:sbf = 1:sbf) && (o2[t]:sbf = 0:sbf || o2[t]:sbf = 1:sbf) && ((o2[t]:sbf = 1:sbf) <-> ((i1[t]:sbf = 1:sbf) && !((o1[t]:sbf = 1:sbf))))))).",
+          "has_error": false,
+          "id": "STATE-1",
+          "operation": "valid",
+          "report": "\u001b[39mcalculate_fixed_points:\u001b[0m                           \u001b[39m27\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\u001b[2mapply_rec_relations:\u001b[0m                               \u001b[2m3\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\u001b[39mnormalize:\u001b[0m                                      \u001b[39m2.60\u001b[0m  \u001b[39mms\u001b[0m\n\t\u001b[2meliminate_arithmetic_and_quantifiers:\u001b[0m    \u001b[2m351\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\t\u001b[39mnormalize_temporal_quantifiers:\u001b[0m         \u001b[39m2.21\u001b[0m  \u001b[39mms\u001b[0m\n\u001b[2mexpand_definitions:\u001b[0m                               \u001b[2m17\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\u001b[39meliminate_arithmetic_and_quantifiers:\u001b[0m            \u001b[39m432\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\u001b[2mnormalize_temporal_quantifiers:\u001b[0m                 \u001b[2m2.09\u001b[0m  \u001b[2mms\u001b[0m\n\u001b[39mnormalize:\u001b[0m                                      \u001b[39m1.43\u001b[0m  \u001b[39mms\u001b[0m\n\t\u001b[2meliminate_arithmetic_and_quantifiers:\u001b[0m    \u001b[2m396\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\t\u001b[39mnormalize_temporal_quantifiers:\u001b[0m         \u001b[39m1.01\u001b[0m  \u001b[39mms\u001b[0m\n\u001b[2mexpand_definitions:\u001b[0m                               \u001b[2m18\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\u001b[39mexpression_paths:\u001b[0m\n",
+          "value": true
+        }
+      ],
+      "returncode": 0,
+      "runtime": {
+        "declared_source_revision": "31b5b3cfa546d1769cb27c882f131a2914452b55",
+        "module_name": "tau.cpython-312-x86_64-linux-gnu.so",
+        "module_sha256": "0da401031b9e39b1d6553aa38941b3be2ef70215998a0f978db451755589a32b",
+        "revision_attestation": "caller_declared; module bytes hashed"
+      },
+      "schema": "zeno/tau-worker-result/v1",
+      "status": "completed",
+      "timeout_seconds": 15
+    },
+    "counterexample_extraction": "not_available_in_this_adapter",
+    "evidence_kind": "tau_solver_reported",
+    "formula": "always (((i1[t]:sbf = 0:sbf || i1[t]:sbf = 1:sbf) && (i2[t]:sbf = 0:sbf || i2[t]:sbf = 1:sbf) && (i3[t]:sbf = 0:sbf || i3[t]:sbf = 1:sbf) && T) -> ((o1[t]:sbf = 0:sbf || o1[t]:sbf = 1:sbf) && (o2[t]:sbf = 0:sbf || o2[t]:sbf = 1:sbf) && (((o1[t]:sbf = 1:sbf) <-> ((i1[t]:sbf = 1:sbf) && ((i2[t]:sbf = 1:sbf) || (i3[t]:sbf = 1:sbf)))) && ((o2[t]:sbf = 1:sbf) <-> ((i1[t]:sbf = 1:sbf) && !((o1[t]:sbf = 1:sbf)))))))",
+    "semantics": "causal realizability plus universal trace implication",
+    "status": "pass"
+  },
+  "translation": {
+    "algebra": "sbf",
+    "formula": "always (((i1[t]:sbf = 0:sbf || i1[t]:sbf = 1:sbf) && (i2[t]:sbf = 0:sbf || i2[t]:sbf = 1:sbf) && (i3[t]:sbf = 0:sbf || i3[t]:sbf = 1:sbf) && T) -> ((o1[t]:sbf = 0:sbf || o1[t]:sbf = 1:sbf) && (o2[t]:sbf = 0:sbf || o2[t]:sbf = 1:sbf) && (((o1[t]:sbf = 1:sbf) <-> ((i1[t]:sbf = 1:sbf) && ((i2[t]:sbf = 1:sbf) || (i3[t]:sbf = 1:sbf)))) && ((o2[t]:sbf = 1:sbf) <-> ((i1[t]:sbf = 1:sbf) && !((o1[t]:sbf = 1:sbf)))))))",
+    "limitations": [
+      "Stateless relation translation only; no state recurrence or liveness inferred.",
+      "Finite examples and deterministic-output requirements remain checked by the reference checker."
+    ],
+    "project_digest": "a67135dafa2927ddeaceb9099b29c4ec110553201cb79825af63b45ab0d49ad0",
+    "requirements": [
+      {
+        "english": "Sell a held position if either the profit signal or the exit signal is true.",
+        "formula": "always (((i1[t]:sbf = 0:sbf || i1[t]:sbf = 1:sbf) && (i2[t]:sbf = 0:sbf || i2[t]:sbf = 1:sbf) && (i3[t]:sbf = 0:sbf || i3[t]:sbf = 1:sbf) && T) -> ((o1[t]:sbf = 0:sbf || o1[t]:sbf = 1:sbf) && (o2[t]:sbf = 0:sbf || o2[t]:sbf = 1:sbf) && ((o1[t]:sbf = 1:sbf) <-> ((i1[t]:sbf = 1:sbf) && ((i2[t]:sbf = 1:sbf) || (i3[t]:sbf = 1:sbf))))))",
+        "id": "EXIT-1"
+      },
+      {
+        "english": "Continue holding exactly when already holding and not selling.",
+        "formula": "always (((i1[t]:sbf = 0:sbf || i1[t]:sbf = 1:sbf) && (i2[t]:sbf = 0:sbf || i2[t]:sbf = 1:sbf) && (i3[t]:sbf = 0:sbf || i3[t]:sbf = 1:sbf) && T) -> ((o1[t]:sbf = 0:sbf || o1[t]:sbf = 1:sbf) && (o2[t]:sbf = 0:sbf || o2[t]:sbf = 1:sbf) && ((o2[t]:sbf = 1:sbf) <-> ((i1[t]:sbf = 1:sbf) && !((o1[t]:sbf = 1:sbf))))))",
+        "id": "STATE-1"
+      }
+    ],
+    "streams": {
+      "exit": "i3",
+      "hold_next": "o2",
+      "holding": "i1",
+      "profit": "i2",
+      "sell": "o1"
+    }
+  }
+}

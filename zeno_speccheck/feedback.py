@@ -19,7 +19,7 @@ def replay_boolean(project: Project, report: object, source_digest: str) -> dict
                "proposals": report.get("agent_proposals")}
     replayed = evolve(project, seed=search["seed"], generations=search["generations"],
                       population=search["population"], max_evaluations=search["max_evaluations"],
-                      proposal_data=offered)
+                      proposal_data=offered, warm_start=report.get("warm_start"))
     original = {k: v for k, v in report.items() if k != "tool"}
     # Canonical JSON equality preserves Boolean versus numeric distinctions.
     return {"schema": "zeno/replay/v1",

@@ -1,0 +1,958 @@
+{
+  "approval": "not_granted",
+  "feedback": {
+    "approval": "not_granted",
+    "archive_digest": "db4852481d965f3484703cc3c3799f82c9fdaf5f4dd90c094061df5235701bc4",
+    "archive_witness_count": 75,
+    "counterexamples": [
+      {
+        "kind": "forbidden_behavior",
+        "requirement": "EXIT-1",
+        "values": {
+          "exit": true,
+          "hold_next": true,
+          "holding": true,
+          "profit": false,
+          "sell": false
+        }
+      },
+      {
+        "example": "exit-without-profit",
+        "expected_allowed": true,
+        "kind": "example_mismatch",
+        "values": {
+          "exit": true,
+          "hold_next": false,
+          "holding": true,
+          "profit": false,
+          "sell": true
+        }
+      },
+      {
+        "kind": "forbidden_behavior",
+        "requirement": "STATE-1",
+        "values": {
+          "exit": false,
+          "hold_next": true,
+          "holding": true,
+          "profit": false,
+          "sell": true
+        }
+      },
+      {
+        "inputs": {
+          "exit": true,
+          "holding": true,
+          "profit": false
+        },
+        "kind": "dead_end_input"
+      },
+      {
+        "inputs": {
+          "exit": false,
+          "holding": false,
+          "profit": false
+        },
+        "kind": "multiple_outputs",
+        "outputs": [
+          {
+            "hold_next": true,
+            "sell": false
+          },
+          {
+            "hold_next": false,
+            "sell": true
+          }
+        ]
+      },
+      {
+        "kind": "forbidden_behavior",
+        "requirement": "EXIT-1",
+        "values": {
+          "exit": false,
+          "hold_next": true,
+          "holding": true,
+          "profit": true,
+          "sell": false
+        }
+      },
+      {
+        "kind": "forbidden_behavior",
+        "requirement": "EXIT-1",
+        "values": {
+          "exit": false,
+          "hold_next": false,
+          "holding": true,
+          "profit": false,
+          "sell": true
+        }
+      },
+      {
+        "kind": "forbidden_behavior",
+        "requirement": "EXIT-1",
+        "values": {
+          "exit": true,
+          "hold_next": false,
+          "holding": false,
+          "profit": true,
+          "sell": true
+        }
+      },
+      {
+        "kind": "forbidden_behavior",
+        "requirement": "EXIT-1",
+        "values": {
+          "exit": true,
+          "hold_next": true,
+          "holding": true,
+          "profit": true,
+          "sell": false
+        }
+      },
+      {
+        "kind": "forbidden_behavior",
+        "requirement": "EXIT-1",
+        "values": {
+          "exit": false,
+          "hold_next": true,
+          "holding": true,
+          "profit": false,
+          "sell": true
+        }
+      },
+      {
+        "kind": "forbidden_behavior",
+        "requirement": "STATE-1",
+        "values": {
+          "exit": false,
+          "hold_next": true,
+          "holding": true,
+          "profit": true,
+          "sell": true
+        }
+      },
+      {
+        "inputs": {
+          "exit": true,
+          "holding": true,
+          "profit": true
+        },
+        "kind": "dead_end_input"
+      },
+      {
+        "kind": "forbidden_behavior",
+        "requirement": "STATE-1",
+        "values": {
+          "exit": false,
+          "hold_next": true,
+          "holding": false,
+          "profit": false,
+          "sell": false
+        }
+      },
+      {
+        "kind": "forbidden_behavior",
+        "requirement": "STATE-1",
+        "values": {
+          "exit": true,
+          "hold_next": true,
+          "holding": false,
+          "profit": false,
+          "sell": false
+        }
+      },
+      {
+        "kind": "forbidden_behavior",
+        "requirement": "STATE-1",
+        "values": {
+          "exit": false,
+          "hold_next": true,
+          "holding": false,
+          "profit": true,
+          "sell": false
+        }
+      },
+      {
+        "kind": "forbidden_behavior",
+        "requirement": "STATE-1",
+        "values": {
+          "exit": true,
+          "hold_next": true,
+          "holding": false,
+          "profit": true,
+          "sell": false
+        }
+      },
+      {
+        "kind": "forbidden_behavior",
+        "requirement": "STATE-1",
+        "values": {
+          "exit": false,
+          "hold_next": false,
+          "holding": true,
+          "profit": false,
+          "sell": false
+        }
+      },
+      {
+        "kind": "forbidden_behavior",
+        "requirement": "EXIT-1",
+        "values": {
+          "exit": true,
+          "hold_next": false,
+          "holding": true,
+          "profit": false,
+          "sell": false
+        }
+      },
+      {
+        "kind": "forbidden_behavior",
+        "requirement": "STATE-1",
+        "values": {
+          "exit": true,
+          "hold_next": false,
+          "holding": true,
+          "profit": false,
+          "sell": false
+        }
+      },
+      {
+        "kind": "forbidden_behavior",
+        "requirement": "STATE-1",
+        "values": {
+          "exit": true,
+          "hold_next": true,
+          "holding": true,
+          "profit": true,
+          "sell": true
+        }
+      },
+      {
+        "kind": "forbidden_behavior",
+        "requirement": "EXIT-1",
+        "values": {
+          "exit": false,
+          "hold_next": false,
+          "holding": true,
+          "profit": true,
+          "sell": false
+        }
+      },
+      {
+        "kind": "forbidden_behavior",
+        "requirement": "STATE-1",
+        "values": {
+          "exit": false,
+          "hold_next": false,
+          "holding": true,
+          "profit": true,
+          "sell": false
+        }
+      },
+      {
+        "kind": "forbidden_behavior",
+        "requirement": "EXIT-1",
+        "values": {
+          "exit": true,
+          "hold_next": false,
+          "holding": true,
+          "profit": true,
+          "sell": false
+        }
+      },
+      {
+        "kind": "forbidden_behavior",
+        "requirement": "STATE-1",
+        "values": {
+          "exit": true,
+          "hold_next": false,
+          "holding": true,
+          "profit": true,
+          "sell": false
+        }
+      },
+      {
+        "kind": "forbidden_behavior",
+        "requirement": "STATE-1",
+        "values": {
+          "exit": true,
+          "hold_next": true,
+          "holding": true,
+          "profit": false,
+          "sell": true
+        }
+      },
+      {
+        "kind": "forbidden_behavior",
+        "requirement": "EXIT-1",
+        "values": {
+          "exit": false,
+          "hold_next": false,
+          "holding": false,
+          "profit": false,
+          "sell": true
+        }
+      },
+      {
+        "kind": "forbidden_behavior",
+        "requirement": "EXIT-1",
+        "values": {
+          "exit": false,
+          "hold_next": true,
+          "holding": false,
+          "profit": false,
+          "sell": true
+        }
+      },
+      {
+        "kind": "forbidden_behavior",
+        "requirement": "STATE-1",
+        "values": {
+          "exit": false,
+          "hold_next": true,
+          "holding": false,
+          "profit": false,
+          "sell": true
+        }
+      },
+      {
+        "kind": "forbidden_behavior",
+        "requirement": "EXIT-1",
+        "values": {
+          "exit": true,
+          "hold_next": false,
+          "holding": false,
+          "profit": false,
+          "sell": true
+        }
+      },
+      {
+        "kind": "forbidden_behavior",
+        "requirement": "EXIT-1",
+        "values": {
+          "exit": true,
+          "hold_next": true,
+          "holding": false,
+          "profit": false,
+          "sell": true
+        }
+      },
+      {
+        "kind": "forbidden_behavior",
+        "requirement": "STATE-1",
+        "values": {
+          "exit": true,
+          "hold_next": true,
+          "holding": false,
+          "profit": false,
+          "sell": true
+        }
+      },
+      {
+        "inputs": {
+          "exit": true,
+          "holding": false,
+          "profit": false
+        },
+        "kind": "multiple_outputs",
+        "outputs": [
+          {
+            "hold_next": true,
+            "sell": false
+          },
+          {
+            "hold_next": false,
+            "sell": true
+          }
+        ]
+      }
+    ],
+    "evaluated_candidates": 128,
+    "instructions": [
+      "Improve the target candidate against the unchanged project.",
+      "Historical witnesses describe failures of earlier candidates; the target may already resolve them.",
+      "Feedback may omit witnesses. Every new candidate is checked over the full declared domain.",
+      "Passing candidates need no repair; any proposed simplification must pass the same gates."
+    ],
+    "replay": {
+      "comparison": "entire deterministic evolution report",
+      "project_digest": "a67135dafa2927ddeaceb9099b29c4ec110553201cb79825af63b45ab0d49ad0",
+      "report_digest": "3bab056706334a324f7b744041d3cbd2934b5adf8a358ef195a150059703b6c7",
+      "schema": "zeno/replay/v1",
+      "status": "pass"
+    },
+    "schema": "zeno/verified-feedback/v1",
+    "search_status": "candidate_found",
+    "target_candidate_id": "7deecf0dacb6885ad9c9ab70f057d24bcc570131c13efe675f26496b79467f41",
+    "target_check": {
+      "admitted_inputs": 8,
+      "approval": "not_granted",
+      "evidence_kind": "exhaustive_boolean_relation",
+      "formula": "((sell <-> (holding && (!(profit) -> exit))) && (hold_next <-> (holding && !(sell))))",
+      "inputs_with_multiple_outputs": 0,
+      "permitted_pairs": 8,
+      "project_digest": "a67135dafa2927ddeaceb9099b29c4ec110553201cb79825af63b45ab0d49ad0",
+      "scope": {
+        "assumption": "true",
+        "inputs": [
+          "holding",
+          "profit",
+          "exit"
+        ],
+        "outputs": [
+          "sell",
+          "hold_next"
+        ],
+        "total_assignments": 32
+      },
+      "semantic_digest": "2cc00102228198cde5b206bfc92e8bf69a57c76b4bd06a62d409363c230bd063",
+      "status": "pass",
+      "violation_count": 0,
+      "violations": [],
+      "violations_omitted": 0
+    },
+    "witnesses_omitted": 43
+  },
+  "schema": "zeno/session-feedback/v1",
+  "session_archive": [
+    {
+      "first_candidate": "6828e2f45f82f6e5b01903ff4a71dff34ca61e7c8d6e174852efd5d24d1de007",
+      "first_round": 1,
+      "witness": {
+        "kind": "forbidden_behavior",
+        "requirement": "EXIT-1",
+        "values": {
+          "exit": true,
+          "hold_next": true,
+          "holding": true,
+          "profit": false,
+          "sell": false
+        }
+      }
+    },
+    {
+      "first_candidate": "6828e2f45f82f6e5b01903ff4a71dff34ca61e7c8d6e174852efd5d24d1de007",
+      "first_round": 1,
+      "witness": {
+        "kind": "forbidden_behavior",
+        "requirement": "EXIT-1",
+        "values": {
+          "exit": false,
+          "hold_next": true,
+          "holding": true,
+          "profit": true,
+          "sell": false
+        }
+      }
+    },
+    {
+      "first_candidate": "6828e2f45f82f6e5b01903ff4a71dff34ca61e7c8d6e174852efd5d24d1de007",
+      "first_round": 1,
+      "witness": {
+        "example": "exit-without-profit",
+        "expected_allowed": true,
+        "kind": "example_mismatch",
+        "values": {
+          "exit": true,
+          "hold_next": false,
+          "holding": true,
+          "profit": false,
+          "sell": true
+        }
+      }
+    },
+    {
+      "first_candidate": "d88871c15ac5d7216d0cfd867fd3f56949b1716639e96b637911198a6fd082c2",
+      "first_round": 1,
+      "witness": {
+        "kind": "forbidden_behavior",
+        "requirement": "EXIT-1",
+        "values": {
+          "exit": false,
+          "hold_next": false,
+          "holding": false,
+          "profit": false,
+          "sell": true
+        }
+      }
+    },
+    {
+      "first_candidate": "d88871c15ac5d7216d0cfd867fd3f56949b1716639e96b637911198a6fd082c2",
+      "first_round": 1,
+      "witness": {
+        "kind": "forbidden_behavior",
+        "requirement": "EXIT-1",
+        "values": {
+          "exit": true,
+          "hold_next": false,
+          "holding": false,
+          "profit": false,
+          "sell": true
+        }
+      }
+    },
+    {
+      "first_candidate": "d88871c15ac5d7216d0cfd867fd3f56949b1716639e96b637911198a6fd082c2",
+      "first_round": 1,
+      "witness": {
+        "kind": "forbidden_behavior",
+        "requirement": "EXIT-1",
+        "values": {
+          "exit": false,
+          "hold_next": false,
+          "holding": false,
+          "profit": true,
+          "sell": true
+        }
+      }
+    },
+    {
+      "first_candidate": "d88871c15ac5d7216d0cfd867fd3f56949b1716639e96b637911198a6fd082c2",
+      "first_round": 1,
+      "witness": {
+        "kind": "forbidden_behavior",
+        "requirement": "EXIT-1",
+        "values": {
+          "exit": true,
+          "hold_next": false,
+          "holding": false,
+          "profit": true,
+          "sell": true
+        }
+      }
+    },
+    {
+      "first_candidate": "d88871c15ac5d7216d0cfd867fd3f56949b1716639e96b637911198a6fd082c2",
+      "first_round": 1,
+      "witness": {
+        "kind": "forbidden_behavior",
+        "requirement": "EXIT-1",
+        "values": {
+          "exit": false,
+          "hold_next": false,
+          "holding": true,
+          "profit": false,
+          "sell": true
+        }
+      }
+    },
+    {
+      "first_candidate": "cc470a6055a24358d88ba404e4a31a541bbb4b3162089755bd386466f70b2e14",
+      "first_round": 1,
+      "witness": {
+        "inputs": {
+          "exit": false,
+          "holding": false,
+          "profit": false
+        },
+        "kind": "multiple_outputs",
+        "outputs": [
+          {
+            "hold_next": false,
+            "sell": false
+          },
+          {
+            "hold_next": false,
+            "sell": true
+          }
+        ]
+      }
+    },
+    {
+      "first_candidate": "cc470a6055a24358d88ba404e4a31a541bbb4b3162089755bd386466f70b2e14",
+      "first_round": 1,
+      "witness": {
+        "inputs": {
+          "exit": true,
+          "holding": false,
+          "profit": false
+        },
+        "kind": "multiple_outputs",
+        "outputs": [
+          {
+            "hold_next": false,
+            "sell": false
+          },
+          {
+            "hold_next": false,
+            "sell": true
+          }
+        ]
+      }
+    },
+    {
+      "first_candidate": "cc470a6055a24358d88ba404e4a31a541bbb4b3162089755bd386466f70b2e14",
+      "first_round": 1,
+      "witness": {
+        "inputs": {
+          "exit": false,
+          "holding": false,
+          "profit": true
+        },
+        "kind": "multiple_outputs",
+        "outputs": [
+          {
+            "hold_next": false,
+            "sell": false
+          },
+          {
+            "hold_next": false,
+            "sell": true
+          }
+        ]
+      }
+    },
+    {
+      "first_candidate": "cc470a6055a24358d88ba404e4a31a541bbb4b3162089755bd386466f70b2e14",
+      "first_round": 1,
+      "witness": {
+        "inputs": {
+          "exit": true,
+          "holding": false,
+          "profit": true
+        },
+        "kind": "multiple_outputs",
+        "outputs": [
+          {
+            "hold_next": false,
+            "sell": false
+          },
+          {
+            "hold_next": false,
+            "sell": true
+          }
+        ]
+      }
+    },
+    {
+      "first_candidate": "cc470a6055a24358d88ba404e4a31a541bbb4b3162089755bd386466f70b2e14",
+      "first_round": 1,
+      "witness": {
+        "inputs": {
+          "exit": false,
+          "holding": true,
+          "profit": false
+        },
+        "kind": "multiple_outputs",
+        "outputs": [
+          {
+            "hold_next": true,
+            "sell": false
+          },
+          {
+            "hold_next": false,
+            "sell": true
+          }
+        ]
+      }
+    },
+    {
+      "first_candidate": "cc470a6055a24358d88ba404e4a31a541bbb4b3162089755bd386466f70b2e14",
+      "first_round": 1,
+      "witness": {
+        "inputs": {
+          "exit": true,
+          "holding": true,
+          "profit": false
+        },
+        "kind": "multiple_outputs",
+        "outputs": [
+          {
+            "hold_next": true,
+            "sell": false
+          },
+          {
+            "hold_next": false,
+            "sell": true
+          }
+        ]
+      }
+    },
+    {
+      "first_candidate": "cc470a6055a24358d88ba404e4a31a541bbb4b3162089755bd386466f70b2e14",
+      "first_round": 1,
+      "witness": {
+        "inputs": {
+          "exit": false,
+          "holding": true,
+          "profit": true
+        },
+        "kind": "multiple_outputs",
+        "outputs": [
+          {
+            "hold_next": true,
+            "sell": false
+          },
+          {
+            "hold_next": false,
+            "sell": true
+          }
+        ]
+      }
+    },
+    {
+      "first_candidate": "cc470a6055a24358d88ba404e4a31a541bbb4b3162089755bd386466f70b2e14",
+      "first_round": 1,
+      "witness": {
+        "kind": "forbidden_behavior",
+        "requirement": "EXIT-1",
+        "values": {
+          "exit": true,
+          "hold_next": true,
+          "holding": true,
+          "profit": true,
+          "sell": false
+        }
+      }
+    },
+    {
+      "first_candidate": "cc470a6055a24358d88ba404e4a31a541bbb4b3162089755bd386466f70b2e14",
+      "first_round": 1,
+      "witness": {
+        "inputs": {
+          "exit": true,
+          "holding": true,
+          "profit": true
+        },
+        "kind": "multiple_outputs",
+        "outputs": [
+          {
+            "hold_next": true,
+            "sell": false
+          },
+          {
+            "hold_next": false,
+            "sell": true
+          }
+        ]
+      }
+    },
+    {
+      "first_candidate": "0ac498e35464bf1a2b550087556cfcec66fd525011c1915675a6cba0c80b2427",
+      "first_round": 1,
+      "witness": {
+        "inputs": {
+          "exit": false,
+          "holding": true,
+          "profit": false
+        },
+        "kind": "dead_end_input"
+      }
+    },
+    {
+      "first_candidate": "0ac498e35464bf1a2b550087556cfcec66fd525011c1915675a6cba0c80b2427",
+      "first_round": 1,
+      "witness": {
+        "inputs": {
+          "exit": true,
+          "holding": true,
+          "profit": false
+        },
+        "kind": "dead_end_input"
+      }
+    },
+    {
+      "first_candidate": "0ac498e35464bf1a2b550087556cfcec66fd525011c1915675a6cba0c80b2427",
+      "first_round": 1,
+      "witness": {
+        "inputs": {
+          "exit": false,
+          "holding": true,
+          "profit": true
+        },
+        "kind": "dead_end_input"
+      }
+    },
+    {
+      "first_candidate": "0ac498e35464bf1a2b550087556cfcec66fd525011c1915675a6cba0c80b2427",
+      "first_round": 1,
+      "witness": {
+        "inputs": {
+          "exit": true,
+          "holding": true,
+          "profit": true
+        },
+        "kind": "dead_end_input"
+      }
+    },
+    {
+      "first_candidate": "85d9ec427051a77dbdb8b9e04b9b62cd9f76ea8b6a4907ce152d9ddf72fd4bbb",
+      "first_round": 1,
+      "witness": {
+        "kind": "forbidden_behavior",
+        "requirement": "STATE-1",
+        "values": {
+          "exit": false,
+          "hold_next": true,
+          "holding": false,
+          "profit": false,
+          "sell": false
+        }
+      }
+    },
+    {
+      "first_candidate": "85d9ec427051a77dbdb8b9e04b9b62cd9f76ea8b6a4907ce152d9ddf72fd4bbb",
+      "first_round": 1,
+      "witness": {
+        "kind": "forbidden_behavior",
+        "requirement": "STATE-1",
+        "values": {
+          "exit": true,
+          "hold_next": true,
+          "holding": false,
+          "profit": false,
+          "sell": false
+        }
+      }
+    },
+    {
+      "first_candidate": "85d9ec427051a77dbdb8b9e04b9b62cd9f76ea8b6a4907ce152d9ddf72fd4bbb",
+      "first_round": 1,
+      "witness": {
+        "kind": "forbidden_behavior",
+        "requirement": "STATE-1",
+        "values": {
+          "exit": false,
+          "hold_next": true,
+          "holding": false,
+          "profit": true,
+          "sell": false
+        }
+      }
+    },
+    {
+      "first_candidate": "85d9ec427051a77dbdb8b9e04b9b62cd9f76ea8b6a4907ce152d9ddf72fd4bbb",
+      "first_round": 1,
+      "witness": {
+        "kind": "forbidden_behavior",
+        "requirement": "STATE-1",
+        "values": {
+          "exit": true,
+          "hold_next": true,
+          "holding": false,
+          "profit": true,
+          "sell": false
+        }
+      }
+    },
+    {
+      "first_candidate": "b35b0cdce82e9793d8e42cc0eb63fa68f12a5ee131acd5eb2072d9a5d0fcc0b8",
+      "first_round": 1,
+      "witness": {
+        "inputs": {
+          "exit": false,
+          "holding": false,
+          "profit": false
+        },
+        "kind": "dead_end_input"
+      }
+    },
+    {
+      "first_candidate": "b35b0cdce82e9793d8e42cc0eb63fa68f12a5ee131acd5eb2072d9a5d0fcc0b8",
+      "first_round": 1,
+      "witness": {
+        "inputs": {
+          "exit": true,
+          "holding": false,
+          "profit": false
+        },
+        "kind": "dead_end_input"
+      }
+    },
+    {
+      "first_candidate": "b35b0cdce82e9793d8e42cc0eb63fa68f12a5ee131acd5eb2072d9a5d0fcc0b8",
+      "first_round": 1,
+      "witness": {
+        "inputs": {
+          "exit": false,
+          "holding": false,
+          "profit": true
+        },
+        "kind": "dead_end_input"
+      }
+    },
+    {
+      "first_candidate": "b35b0cdce82e9793d8e42cc0eb63fa68f12a5ee131acd5eb2072d9a5d0fcc0b8",
+      "first_round": 1,
+      "witness": {
+        "inputs": {
+          "exit": true,
+          "holding": false,
+          "profit": true
+        },
+        "kind": "dead_end_input"
+      }
+    },
+    {
+      "first_candidate": "e8ac3f171724e6f9be64c1101bdd930eb7c0e62cdbe9edec68fe391bd7f2a4b0",
+      "first_round": 1,
+      "witness": {
+        "inputs": {
+          "exit": false,
+          "holding": false,
+          "profit": false
+        },
+        "kind": "multiple_outputs",
+        "outputs": [
+          {
+            "hold_next": false,
+            "sell": false
+          },
+          {
+            "hold_next": true,
+            "sell": false
+          }
+        ]
+      }
+    },
+    {
+      "first_candidate": "e8ac3f171724e6f9be64c1101bdd930eb7c0e62cdbe9edec68fe391bd7f2a4b0",
+      "first_round": 1,
+      "witness": {
+        "inputs": {
+          "exit": false,
+          "holding": false,
+          "profit": true
+        },
+        "kind": "multiple_outputs",
+        "outputs": [
+          {
+            "hold_next": false,
+            "sell": false
+          },
+          {
+            "hold_next": true,
+            "sell": false
+          }
+        ]
+      }
+    },
+    {
+      "first_candidate": "e8ac3f171724e6f9be64c1101bdd930eb7c0e62cdbe9edec68fe391bd7f2a4b0",
+      "first_round": 1,
+      "witness": {
+        "kind": "forbidden_behavior",
+        "requirement": "EXIT-1",
+        "values": {
+          "exit": true,
+          "hold_next": false,
+          "holding": true,
+          "profit": false,
+          "sell": false
+        }
+      }
+    }
+  ],
+  "session_archive_count": 76,
+  "session_archive_digest": "6e0ae2196bd1aa5306a924f25945b56790274cf83f8ca15f1cc56b4dcc80af0b",
+  "session_archive_omitted": 44,
+  "session_replay": {
+    "comparison": "all rounds, retention, lineage, cumulative witnesses, and final selection",
+    "project_digest": "a67135dafa2927ddeaceb9099b29c4ec110553201cb79825af63b45ab0d49ad0",
+    "rounds_replayed": 2,
+    "schema": "zeno/session-replay/v1",
+    "session_digest": "8080f9f69ea0d20f770c91837b1e6b0a1ab4fc02989bd7684c0511b95956b976",
+    "status": "pass"
+  },
+  "target_round": 2
+}

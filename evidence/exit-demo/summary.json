@@ -1,0 +1,138 @@
+{
+  "approval": "not_granted",
+  "benchmark_claim": "No superiority claim; one illustrative task with fixed seeds.",
+  "changed_inputs": [
+    {
+      "after": [
+        {
+          "hold_next": false,
+          "sell": true
+        }
+      ],
+      "before": [
+        {
+          "hold_next": true,
+          "sell": false
+        }
+      ],
+      "changed": true,
+      "inputs": {
+        "exit": true,
+        "holding": true,
+        "profit": false
+      },
+      "requirement_permitted": [
+        {
+          "hold_next": false,
+          "sell": true
+        }
+      ]
+    },
+    {
+      "after": [
+        {
+          "hold_next": false,
+          "sell": true
+        }
+      ],
+      "before": [
+        {
+          "hold_next": true,
+          "sell": false
+        }
+      ],
+      "changed": true,
+      "inputs": {
+        "exit": false,
+        "holding": true,
+        "profit": true
+      },
+      "requirement_permitted": [
+        {
+          "hold_next": false,
+          "sell": true
+        }
+      ]
+    }
+  ],
+  "evaluated_candidates": 202,
+  "independent_transition_oracle": "all 32 assignments agree",
+  "project_digest": "a67135dafa2927ddeaceb9099b29c4ec110553201cb79825af63b45ab0d49ad0",
+  "proposal_provenance": "Round 3 replays an assistant-authored simplification fixture; no model is invoked by this script.",
+  "retained_witnesses": 76,
+  "rounds": [
+    {
+      "agent_proposals": 0,
+      "candidate_id": "3e5985a3177f8608996a6724e3d7c250bc6f8e7ac19f5ce57c782988f236c786",
+      "evaluated_candidates": 64,
+      "formula": "(((holding && (holding && exit)) <-> sell) && (hold_next <-> (holding && !(sell))))",
+      "nodes": 14,
+      "origin": "typed_mutation",
+      "parents": [
+        "9ced2fc08810fe9e72641e1a6251f9e26b587b5dc438cac355eacc5dae55a3ea"
+      ],
+      "remaining_violations": 1,
+      "retained_formulas": 0,
+      "round": 1,
+      "status": "no_candidate_found"
+    },
+    {
+      "agent_proposals": 0,
+      "candidate_id": "7deecf0dacb6885ad9c9ab70f057d24bcc570131c13efe675f26496b79467f41",
+      "evaluated_candidates": 128,
+      "formula": "((sell <-> (holding && (!(profit) -> exit))) && (hold_next <-> (holding && !(sell))))",
+      "nodes": 15,
+      "origin": "typed_mutation",
+      "parents": [
+        "8040b20449170c0e1e67dc2cc7b76ff78482fe07ebffdedaf24767eba90df4ea"
+      ],
+      "remaining_violations": 0,
+      "retained_formulas": 8,
+      "round": 2,
+      "status": "candidate_found"
+    },
+    {
+      "agent_proposals": 1,
+      "candidate_id": "6ff9b63b7eb373c7ca71e10298bf2a0bf1a41b5737e17ebf0048a5f7179b6d6b",
+      "evaluated_candidates": 10,
+      "formula": "((sell <-> (holding && (profit || exit))) && (hold_next <-> (holding && !(sell))))",
+      "nodes": 14,
+      "origin": "agent_proposal",
+      "parents": [],
+      "remaining_violations": 0,
+      "retained_formulas": 8,
+      "round": 3,
+      "status": "candidate_found"
+    }
+  ],
+  "schema": "zeno/exit-demo/v1",
+  "session_digest": "7ec179461795911c6f2b1b754461db1ab429dcb504b45aa2c01bac3964b50e7a",
+  "source_digest": "4f0f7ab0a7e7cc89d45f3880b5f86be13dd4f5d3a9e1f210327f8d334182a01e",
+  "tau_status": "pass",
+  "unique_candidates": 183,
+  "winner": {
+    "admitted_inputs": 8,
+    "approval": "not_granted",
+    "evidence_kind": "exhaustive_boolean_relation",
+    "formula": "((sell <-> (holding && (profit || exit))) && (hold_next <-> (holding && !(sell))))",
+    "inputs_with_multiple_outputs": 0,
+    "permitted_pairs": 8,
+    "project_digest": "a67135dafa2927ddeaceb9099b29c4ec110553201cb79825af63b45ab0d49ad0",
+    "scope": {
+      "assumption": "true",
+      "inputs": [
+        "holding",
+        "profit",
+        "exit"
+      ],
+      "outputs": [
+        "sell",
+        "hold_next"
+      ],
+      "total_assignments": 32
+    },
+    "semantic_digest": "2cc00102228198cde5b206bfc92e8bf69a57c76b4bd06a62d409363c230bd063",
+    "status": "pass",
+    "violations": []
+  }
+}

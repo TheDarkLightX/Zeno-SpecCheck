@@ -12,6 +12,8 @@ from .evolution import evolve
 from .feedback import replay_boolean, verified_feedback
 from .logic import parse
 from .model import digest, load_project, read_json
+from .review import render_html, review_session
+from .session import evolve_session, replay_session, session_feedback
 from .tau import TauConfig, assemble, check_tau, export_tau, load_tau_project
 from .tau_evolution import evolve_tau
 
@@ -29,21 +31,28 @@ def source_digest() -> str:
 def parser() -> argparse.ArgumentParser:
     root = argparse.ArgumentParser(description="Review and evolve specifications against fixed requirements.")
     commands = root.add_subparsers(dest="command", required=True)
-    for name in ("check", "evolve", "diff", "agent-request", "export-tau", "tau-check", "tau-evolve", "replay"):
+    for name in ("check", "evolve", "diff", "agent-request", "export-tau", "tau-check", "tau-evolve", "replay",
+                 "session-evolve", "session-replay", "review"):
         cmd = commands.add_parser(name)
         cmd.add_argument("project")
-        cmd.add_argument("--out", help="write JSON instead of stdout")
+        cmd.add_argument("--out", help="write the report to a file instead of stdout")
         if name in ("check", "export-tau"):
             cmd.add_argument("--formula", help="candidate formula; defaults to project seed")
         if name == "diff":
             cmd.add_argument("--old", required=True)
             cmd.add_argument("--new", required=True)
-        if name in ("evolve", "tau-evolve"):
+        if name in ("evolve", "tau-evolve", "session-evolve"):
             cmd.add_argument("--seed", type=int, default=0)
-            cmd.add_argument("--generations", type=int, default=8 if name == "evolve" else 4)
-            cmd.add_argument("--population", type=int, default=8 if name == "evolve" else 4)
-            cmd.add_argument("--max-evaluations", type=int, default=256 if name == "evolve" else 16)
+            cmd.add_argument("--generations", type=int, default=4 if name == "tau-evolve" else 8)
+            cmd.add_argument("--population", type=int, default=4 if name == "tau-evolve" else 8)
+            cmd.add_argument("--max-evaluations", type=int, default=16 if name == "tau-evolve" else 256)
             cmd.add_argument("--proposals")
+        if name == "session-evolve":
+            cmd.add_argument("--previous", help="verified session to extend by one round")
+        if name in ("session-replay", "review"):
+            cmd.add_argument("session")
+        if name == "review":
+            cmd.add_argument("--format", choices=("json", "html"), default="html")
         if name in ("tau-check", "tau-evolve"):
             cmd.add_argument("--tau-python", default=sys.executable)
             cmd.add_argument("--tau-module-dir")
@@ -56,7 +65,9 @@ def parser() -> argparse.ArgumentParser:
         if name == "replay":
             cmd.add_argument("report")
         if name == "agent-request":
-            cmd.add_argument("--report", help="verified Boolean evolution report from the previous round")
+            feedback = cmd.add_mutually_exclusive_group()
+            feedback.add_argument("--report", help="verified Boolean evolution report from the previous round")
+            feedback.add_argument("--session", help="verified multi-round Boolean session")
             cmd.add_argument("--max-witnesses", type=int, default=32)
     return root
 
@@ -81,6 +92,12 @@ def execute(args) -> dict:
                 raise ValueError("verified report feedback currently requires a Boolean project")
             request["feedback"] = verified_feedback(
                 project, read_json(args.report, max_bytes=REPORT_MAX_BYTES), source_digest(),
+                max_witnesses=args.max_witnesses)
+        if args.session:
+            if is_tau:
+                raise ValueError("session feedback currently requires a Boolean project")
+            request["session_feedback"] = session_feedback(
+                project, read_json(args.session, max_bytes=REPORT_MAX_BYTES), source_digest(),
                 max_witnesses=args.max_witnesses)
         return request
     if args.command in ("tau-check", "tau-evolve"):
@@ -118,6 +135,16 @@ def execute(args) -> dict:
         return evolve(project, seed=args.seed, generations=args.generations, population=args.population,
                       max_evaluations=args.max_evaluations,
                       proposal_data=read_json(args.proposals) if args.proposals else None)
+    if args.command == "session-evolve":
+        return evolve_session(project, source_digest(),
+                              previous=read_json(args.previous, max_bytes=REPORT_MAX_BYTES) if args.previous else None,
+                              seed=args.seed, generations=args.generations, population=args.population,
+                              max_evaluations=args.max_evaluations,
+                              proposal_data=read_json(args.proposals) if args.proposals else None)
+    if args.command in ("session-replay", "review"):
+        session = read_json(args.session, max_bytes=REPORT_MAX_BYTES)
+        operation = replay_session if args.command == "session-replay" else review_session
+        return operation(project, session, source_digest())
     return replay_boolean(project, read_json(args.report, max_bytes=REPORT_MAX_BYTES), source_digest())
 
 
@@ -126,7 +153,10 @@ def main(argv=None) -> int:
     try:
         result = execute(args)
         result["tool"] = {"name": "zeno-speccheck", "version": __version__, "source_digest": source_digest()}
-        output = json.dumps(result, indent=2, sort_keys=True) + "\n"
+        output = (render_html(result) if args.command == "review" and args.format == "html"
+                  else json.dumps(result, indent=2, sort_keys=True) + "\n")
+        if len(output.encode("utf-8")) > REPORT_MAX_BYTES:
+            raise ValueError("output exceeds the 64 MB report limit; reduce the search budget")
         if args.out:
             destination = Path(args.out)
             destination.parent.mkdir(parents=True, exist_ok=True)

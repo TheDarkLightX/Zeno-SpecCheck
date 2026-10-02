@@ -2,7 +2,7 @@
 
 **Evolve specifications against fixed requirements, with evidence for each candidate.**
 
-Zeno-SpecCheck is an initial working CLI/library for specification review and evolutionary repair. It combines typed mutation, crossover, agent proposals, counterexamples, and formal decision procedures. It supports a small exhaustive Boolean reference model and an optional native Tau backend.
+Zeno-SpecCheck is a CLI/library for specification review and evolutionary repair. It combines typed mutation, crossover, agent proposals, persistent search sessions, counterexamples, visual review, and formal decision procedures. It supports a small exhaustive Boolean reference model and an optional native Tau backend.
 
 The human owns intended behavior. An agent may propose formulas; it cannot change the frozen requirements through the proposal interface or grant its candidate approval. A passing report means the configured obligations passed within the reported scope. It does not establish that the requirements express everything the human intended.
 
@@ -25,6 +25,34 @@ Optional installation: `python -m pip install -e .` provides the `zeno-spec` com
 
 The exit example is an independently written illustration: a held position can be sold on a profit signal **or** an exit signal. It is not a reconstruction of a private deflationary agent, a financial model, or a claim of profitable trading. `hold_next` is an output of a one-step relation; the example does not prove an unbounded state-machine invariant.
 
+## See a complete evolution workflow
+
+```bash
+python scripts/run_exit_demo.py --out runs/exit-demo
+# Open runs/exit-demo/review.html in a browser.
+```
+
+The deterministic demo runs three rounds: 64 candidate evaluations leave one violation; 128 more with retained candidates find a valid repair; a final round checks an assistant-authored simplification proposal in 10 evaluations. The first two rounds receive no hand-written correct candidate. The last round replays a proposal fixture; the script does not call a neural model.
+
+See the [worked walkthrough](docs/exit-workflow.md) and [recorded summary](evidence/exit-demo/summary.json). The generated standalone HTML review shows English/formula requirements, initial counterexamples, per-round progress, candidate lineage, and before/after output tables. It uses no external assets or network calls.
+
+To drive the same workflow yourself:
+
+```bash
+python -m zeno_speccheck session-evolve examples/deflationary_exit.json \
+  --seed 0 --max-evaluations 64 --out runs/session-1.json
+# Exit 1 is expected: no valid candidate yet.
+python -m zeno_speccheck agent-request examples/deflationary_exit.json \
+  --session runs/session-1.json --out runs/request.json
+python -m zeno_speccheck session-evolve examples/deflationary_exit.json \
+  --previous runs/session-1.json --seed 1 --max-evaluations 128 --out runs/session-2.json
+python -m zeno_speccheck session-replay examples/deflationary_exit.json runs/session-2.json
+python -m zeno_speccheck review examples/deflationary_exit.json runs/session-2.json \
+  --out runs/review.html
+```
+
+Use `--proposals response.json` on `session-evolve` to include an external agent's digest-bound proposals. `review --format json` supplies the same verified review data to another tool. Each continuation first replays the existing session, then retains the best representatives of distinct behavior tables and adds to the witness archive. An earlier passing candidate survives an unsuccessful later round. Changing the project or tool source requires a new session. Sessions currently support the Boolean profile only.
+
 ## What works
 
 | Capability | Boolean reference model | Native Tau |
@@ -36,6 +64,8 @@ The exit example is an independently written illustration: a held position can b
 | Mutation and crossover | Typed formula edits | Whole-clause alternatives |
 | Agent proposals | Digest-bound JSON formulas | Digest-bound JSON Tau formulas |
 | Follow-up agent feedback | Replayed best attempt plus bounded counterexamples | Not yet |
+| Persistent search sessions | Verified rounds, retained candidates and cumulative witness archive | Not yet |
+| Visual review | Standalone HTML with behavior tables and round history | Not yet |
 | Semantic comparison | Complete table; added/removed behavior | Not yet |
 | Counterexamples | Concrete assignments and dead-end inputs | Verdicts/diagnostics; no general temporal witness extraction |
 | Replay | Entire deterministic evolution report | Rerun recorded queries with an external runtime |
@@ -82,9 +112,9 @@ python -m zeno_speccheck replay examples/deflationary_exit.json runs/round2.json
 
 The follow-up command replays the **entire** prior Boolean search before emitting feedback. It rejects changed evidence, stale project digests, and reports from different source bytes. The request identifies the best passing candidate, or the best failed attempt when no candidate passed. It includes current failures and a bounded selection of historical witnesses, with explicit omitted counts. Historical witnesses may already be resolved by the target candidate. The next round still checks every candidate exhaustively; feedback truncation never weakens acceptance.
 
-Keep each round's report for its lineage and full archive. A new round uses the same fixed project plus the supplied proposals; it does not automatically resume the prior population or merge archives. The agent/model remains external. Verified report feedback currently supports the finite Boolean profile; raw Tau still uses the initial project request and native check reports.
+The standalone `evolve` command starts an independent search. Use `session-evolve --previous` above to retain candidates and merge witness archives across rounds. The agent/model remains external. Verified report feedback currently supports the finite Boolean profile; raw Tau still uses the initial project request and native check reports.
 
-Project and proposal inputs are limited to 1 MB. Replay and follow-up commands accept reports up to 64 MB, using a bounded file read. Larger searches can produce reports over that limit; reduce the search budget or domain in a separately versioned project. Do not edit an old report to make it fit.
+Project and proposal inputs are limited to 1 MB. Report/session inputs and outputs are limited to 64 MB, using bounded file reads. Sessions allow up to 16 rounds and 8,192 total requested candidate evaluations. Rechecking retained candidates consumes each new round's budget; replay cost is additional. Larger searches can exceed the report limit; reduce the search budget or domain in a separately versioned project. Do not edit an old report to make it fit.
 
 ## Tau setup and use
 

@@ -1,0 +1,8 @@
+{
+  "comparison": "all rounds, retention, lineage, cumulative witnesses, and final selection",
+  "project_digest": "a67135dafa2927ddeaceb9099b29c4ec110553201cb79825af63b45ab0d49ad0",
+  "rounds_replayed": 3,
+  "schema": "zeno/session-replay/v1",
+  "session_digest": "7ec179461795911c6f2b1b754461db1ab429dcb504b45aa2c01bac3964b50e7a",
+  "status": "pass"
+}

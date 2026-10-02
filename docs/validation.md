@@ -13,7 +13,9 @@ The continuation adds eleven tests covering:
 - bounded witness feedback with explicit omissions and unchanged exhaustive acceptance;
 - a passing current candidate alongside historical failures, with no invented human approval.
 
-Final local result on 2026-10-02: **55 tests passed with no skips**, including the four real-Tau tests. The source digest in `evidence/pilot.json` identifies the tested package. GitHub Actions covers the reference and process-boundary workflow; the native runtime remains external.
+The first published version passed **55 tests with no skips**, including the four real-Tau tests. Version 0.2 adds twelve session/review controls and passed **67 tests with no skips** on 2026-10-02. These cover multi-round replay, retention, preserved witnesses, project/source changes, altered lineage, cumulative budgets, winner preservation, visual decision tables, and HTML text escaping. The source digest in `evidence/pilot.json` identifies the tested package. GitHub Actions covers the reference and process-boundary workflow; the native runtime remains external.
+
+The [exit workflow](exit-workflow.md) was executed separately with the native runtime. It used 202 candidate evaluations across three rounds, visited 183 distinct formula identities, and retained 76 distinct diagnostic witnesses. The final candidate passed the independent 32-assignment transition oracle, full session replay, and Tau's realizability/implication gates through the restricted sbf exporter. These are scoped checks of an illustrative one-step relation; they are not a learned-search performance result.
 
 Run the complete suite:
 

@@ -1,0 +1,10 @@
+{
+  "project_digest": "a67135dafa2927ddeaceb9099b29c4ec110553201cb79825af63b45ab0d49ad0",
+  "proposals": [
+    {
+      "formula": "(sell <-> (holding && (profit || exit))) && (hold_next <-> (holding && !sell))",
+      "rationale": "The evolved (!profit -> exit) equals (profit || exit); use the simpler expression."
+    }
+  ],
+  "schema": "zeno/proposals/v1"
+}

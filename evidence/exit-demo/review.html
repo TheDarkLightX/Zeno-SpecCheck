@@ -1,0 +1,57 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'">
+<title>Zeno-SpecCheck · Evolution review</title><style>
+:root{color-scheme:light;--ink:#18312c;--muted:#5d7169;--line:#cbd9d1;--accent:#16654a}
+*{box-sizing:border-box}body{margin:0;background:#f4f7f2;color:var(--ink);font:16px/1.6 system-ui,sans-serif}
+main{max-width:1160px;margin:auto;padding:48px 24px}header{margin-bottom:30px}.eyebrow{font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:700}
+h1{font-size:clamp(28px,4vw,44px);line-height:1.15;max-width:900px;margin:14px 0}h2{font-size:23px;margin:0 0 12px}p{margin:8px 0}.muted{color:var(--muted)}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:28px 0}.card,section{background:white;border:1px solid var(--line);border-radius:12px;padding:22px}.card strong{font-size:30px;display:block}.card span{font-size:14px;color:var(--muted)}section{margin:20px 0}
+code{font:14px/1.7 ui-monospace,monospace;overflow-wrap:anywhere;background:#eef3ee;padding:2px 5px;border-radius:4px}pre{font-size:13px;white-space:pre-wrap;overflow-wrap:anywhere}table{border-collapse:collapse;width:100%;font-size:14px}th,td{padding:13px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}th{font-weight:600;background:#f5f8f4}.scroll{overflow-x:auto}tr.changed td{background:#e8f5ed}li{margin:16px 0}summary{cursor:pointer;color:var(--accent);padding:10px 0;font-weight:600}.pill{display:inline-block;border:1px solid var(--line);border-radius:20px;padding:4px 12px;background:#e8f5ed;font-size:14px}.note{border-left:3px solid #cfb16a;padding-left:14px}footer{font-size:13px;color:var(--muted);overflow-wrap:anywhere}
+@media(max-width:640px){main{padding:24px 14px}.cards{grid-template-columns:1fr}.card{padding:14px}section{padding:16px}th,td{padding:10px 8px}}
+</style></head><body><main><header><div class="eyebrow">Zeno-SpecCheck / Evolution review</div><h1>Illustrative exit policy: exit must not require a profit signal</h1><p class="pill">Candidate satisfies configured checks</p>
+<p class="muted">Fixed requirements. Retained candidates. Replayed evidence.</p></header>
+<div class="cards"><div class="card"><strong>202</strong><span>Candidate evaluations across all rounds</span></div>
+<div class="card"><strong>76</strong><span>Distinct diagnostic witnesses retained</span></div>
+<div class="card"><strong>32</strong><span>Boolean assignments in each exhaustive check</span></div></div>
+<section><h2>1. Freeze the intended behavior</h2><ul><li><strong>EXIT-1</strong> Sell a held position if either the profit signal or the exit signal is true.<br><code>(sell &lt;-&gt; (holding &amp;&amp; (profit || exit)))</code></li><li><strong>STATE-1</strong> Continue holding exactly when already holding and not selling.<br><code>(hold_next &lt;-&gt; (holding &amp;&amp; !(sell)))</code></li></ul><p class="note">Formula requirements are authoritative. Passing these checks does not prove that they capture all intended behavior. Human approval has not been granted.</p></section>
+<section><h2>2. Diagnose the starting specification</h2><p><code>((sell &lt;-&gt; (holding &amp;&amp; (profit &amp;&amp; exit))) &amp;&amp; (hold_next &lt;-&gt; (holding &amp;&amp; !(sell))))</code></p><p>3 violation records in the initial check.</p><details><summary>Inspect initial counterexamples</summary><pre>[
+  {
+    &quot;kind&quot;: &quot;forbidden_behavior&quot;,
+    &quot;requirement&quot;: &quot;EXIT-1&quot;,
+    &quot;values&quot;: {
+      &quot;holding&quot;: true,
+      &quot;profit&quot;: false,
+      &quot;exit&quot;: true,
+      &quot;sell&quot;: false,
+      &quot;hold_next&quot;: true
+    }
+  },
+  {
+    &quot;kind&quot;: &quot;forbidden_behavior&quot;,
+    &quot;requirement&quot;: &quot;EXIT-1&quot;,
+    &quot;values&quot;: {
+      &quot;holding&quot;: true,
+      &quot;profit&quot;: true,
+      &quot;exit&quot;: false,
+      &quot;sell&quot;: false,
+      &quot;hold_next&quot;: true
+    }
+  },
+  {
+    &quot;kind&quot;: &quot;example_mismatch&quot;,
+    &quot;example&quot;: &quot;exit-without-profit&quot;,
+    &quot;values&quot;: {
+      &quot;exit&quot;: true,
+      &quot;hold_next&quot;: false,
+      &quot;holding&quot;: true,
+      &quot;profit&quot;: false,
+      &quot;sell&quot;: true
+    },
+    &quot;expected_allowed&quot;: true
+  }
+]</pre></details></section>
+<section><h2>3. Evolve with memory</h2><p class="muted">Retained candidates are checked again and count toward each round's budget.</p><div class="scroll"><table><thead><tr><th>Round</th><th>Evaluations</th><th>Retained formulas</th><th>Violations in best</th><th>AST nodes</th><th>Best candidate origin</th></tr></thead><tbody><tr><td>1</td><td>64</td><td>0</td><td>1</td><td>14</td><td>typed_mutation</td></tr><tr><td>2</td><td>128</td><td>8</td><td>0</td><td>15</td><td>typed_mutation</td></tr><tr><td>3</td><td>10</td><td>8</td><td>0</td><td>14</td><td>agent_proposal</td></tr></tbody></table></div><details><summary>Round 1 candidate</summary><p><code>(((holding &amp;&amp; (holding &amp;&amp; exit)) &lt;-&gt; sell) &amp;&amp; (hold_next &lt;-&gt; (holding &amp;&amp; !(sell))))</code></p><p>Candidate: <code>3e5985a3177f8608996a6724e3d7c250bc6f8e7ac19f5ce57c782988f236c786</code></p><p>Parents: <code>9ced2fc08810fe9e72641e1a6251f9e26b587b5dc438cac355eacc5dae55a3ea</code></p></details><details><summary>Round 2 candidate</summary><p><code>((sell &lt;-&gt; (holding &amp;&amp; (!(profit) -&gt; exit))) &amp;&amp; (hold_next &lt;-&gt; (holding &amp;&amp; !(sell))))</code></p><p>Candidate: <code>7deecf0dacb6885ad9c9ab70f057d24bcc570131c13efe675f26496b79467f41</code></p><p>Parents: <code>8040b20449170c0e1e67dc2cc7b76ff78482fe07ebffdedaf24767eba90df4ea</code></p></details><details><summary>Round 3 candidate</summary><p><code>((sell &lt;-&gt; (holding &amp;&amp; (profit || exit))) &amp;&amp; (hold_next &lt;-&gt; (holding &amp;&amp; !(sell))))</code></p><p>Candidate: <code>6ff9b63b7eb373c7ca71e10298bf2a0bf1a41b5737e17ebf0048a5f7179b6d6b</code></p><p>Parents: <code>None in this round</code></p></details></section>
+<section><h2>4. Inspect the selected candidate</h2><p><code>((sell &lt;-&gt; (holding &amp;&amp; (profit || exit))) &amp;&amp; (hold_next &lt;-&gt; (holding &amp;&amp; !(sell))))</code></p><p>8 admitted inputs · 8 permitted input/output pairs · 0 violation records.</p></section>
+<section><h2>5. Review the behavior changes</h2><p class="muted">Green rows changed. Requirement-permitted outputs consider protected formulas; configured examples and determinism are checked separately.</p><div class="scroll"><table><thead><tr><th>Inputs</th><th>Starting spec permits</th><th>Selected spec permits</th><th>Requirements permit</th><th>Change</th></tr></thead><tbody><tr><td>holding=0, profit=0, exit=0</td><td>sell=0, hold_next=0</td><td>sell=0, hold_next=0</td><td>sell=0, hold_next=0</td><td>Unchanged</td></tr><tr><td>holding=0, profit=0, exit=1</td><td>sell=0, hold_next=0</td><td>sell=0, hold_next=0</td><td>sell=0, hold_next=0</td><td>Unchanged</td></tr><tr><td>holding=0, profit=1, exit=0</td><td>sell=0, hold_next=0</td><td>sell=0, hold_next=0</td><td>sell=0, hold_next=0</td><td>Unchanged</td></tr><tr><td>holding=0, profit=1, exit=1</td><td>sell=0, hold_next=0</td><td>sell=0, hold_next=0</td><td>sell=0, hold_next=0</td><td>Unchanged</td></tr><tr><td>holding=1, profit=0, exit=0</td><td>sell=0, hold_next=1</td><td>sell=0, hold_next=1</td><td>sell=0, hold_next=1</td><td>Unchanged</td></tr><tr class="changed"><td>holding=1, profit=0, exit=1</td><td>sell=0, hold_next=1</td><td>sell=1, hold_next=0</td><td>sell=1, hold_next=0</td><td>Changed</td></tr><tr class="changed"><td>holding=1, profit=1, exit=0</td><td>sell=0, hold_next=1</td><td>sell=1, hold_next=0</td><td>sell=1, hold_next=0</td><td>Changed</td></tr><tr><td>holding=1, profit=1, exit=1</td><td>sell=1, hold_next=0</td><td>sell=1, hold_next=0</td><td>sell=1, hold_next=0</td><td>Unchanged</td></tr></tbody></table></div></section>
+<footer><p>Complete finite Boolean checking; one-step relation only. This review was generated after replaying every session round. No trading-performance or unbounded temporal claim is made.</p><p>Project: a67135dafa2927ddeaceb9099b29c4ec110553201cb79825af63b45ab0d49ad0<br>Session: 7ec179461795911c6f2b1b754461db1ab429dcb504b45aa2c01bac3964b50e7a</p></footer></main></body></html>

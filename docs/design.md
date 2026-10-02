@@ -2,9 +2,9 @@
 
 ## Boundary
 
-Version 0.1 is a specification-analysis tool. It proposes candidates; it does not deploy a controller, authorize a requirements change, or certify complete intent. The Python reference checker is an implementation of finite semantics, not a formally verified theorem prover. Independent bit-mask tests and a real Tau differential comparison provide scoped evidence about it.
+Version 0.2 is a specification-analysis tool. It proposes candidates; it does not deploy a controller, authorize a requirements change, or certify complete intent. The Python reference checker is an implementation of finite semantics, not a formally verified theorem prover. Independent bit-mask tests and a real Tau differential comparison provide scoped evidence about it.
 
-`logic.py`, the immutable project model, `checking.py`, Boolean `evolution.py`, and `feedback.py` form the core. The CLI, the JSON file reader in `model.py`, and the Tau process bridge are the imperative shell. Search and feedback perform no file/process operations. Search receives immutable Boolean projects. Raw Tau projects are copied and strictly validated before search.
+`logic.py`, the immutable project model, `checking.py`, Boolean `evolution.py`, `feedback.py`, `session.py`, and `review.py` form the core. The CLI, the JSON file reader in `model.py`, and the Tau process bridge are the imperative shell. Search, feedback, session verification, and HTML rendering perform no file/process operations. Search receives immutable Boolean projects. Raw Tau projects are copied and strictly validated before search.
 
 ## Finite relation semantics
 
@@ -30,7 +30,15 @@ A follow-up request takes a saved Boolean evolution report. Replay recomputes th
 
 Only a replayed report supplies feedback. The target is the best passing candidate if one exists, otherwise the best attempt. The feedback contains current failures and diverse historical obligation witnesses, bounded by an explicit count. Omitted counts and the full archive digest identify the scope of that selection. The full archive remains in the round's report; the feedback subset is not a replacement acceptance oracle.
 
-Replay detects inconsistent evidence, not authorship. A party able to produce a different, internally consistent search report can supply it; no signature-based provenance or human approval is implied. Each round remains an independent search with the unchanged project and its explicit proposals.
+Replay detects inconsistent evidence, not authorship. A party able to produce a different, internally consistent search report can supply it; no signature-based provenance or human approval is implied. Standalone `evolve` starts an independent search. Sessions add verified retention across rounds.
+
+## Multi-round sessions
+
+A session contains every complete round report, a digest link to the preceding round, cumulative diagnostic witnesses, and the best candidate across all rounds. Each continuation verifies all prior rounds before selecting up to `population` representatives of distinct behavior tables, ranked by violations, size, and canonical spelling. These formulas become a warm start; the frozen project seed remains unchanged. Their previous verdicts are not reused: they are rechecked and count against the new budget. Retention preserves an earlier winner even if a later round exhausts its budget without success.
+
+The session replay regenerates retention from regenerated earlier evidence, rather than trusting the saved warm-start list. It compares round order, parent links, all candidate evidence, witness origins, global selection, and the session summary. Source and project changes invalidate continuation. This is continuation with retained candidates and explicit new random seeds; it is not checkpointing a random generator mid-generation. The 16-round and 8,192-total-requested-evaluation limits bound session growth; verification adds work beyond those search counts.
+
+Review replays a session before rendering. It computes behavior changes directly from the seed and selected formulas. The displayed decision table is capped at 64 admitted inputs with explicit omissions; acceptance and semantic comparison still cover the complete domain. All project/formula text is HTML-escaped, and the standalone view has no scripts or external dependencies. A view does not grant approval or independently prove a Tau claim.
 
 ## Tau semantics
 
