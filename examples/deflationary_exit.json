@@ -1,0 +1,16 @@
+{
+  "schema": "zeno/boolean-project/v1",
+  "name": "Illustrative exit policy: exit must not require a profit signal",
+  "inputs": ["holding", "profit", "exit"],
+  "outputs": ["sell", "hold_next"],
+  "assumption": "true",
+  "requirements": [
+    {"id": "EXIT-1", "english": "Sell a held position if either the profit signal or the exit signal is true.", "formula": "sell <-> (holding && (profit || exit))"},
+    {"id": "STATE-1", "english": "Continue holding exactly when already holding and not selling.", "formula": "hold_next <-> (holding && !sell)"}
+  ],
+  "examples": [
+    {"id": "exit-without-profit", "values": {"holding": true, "profit": false, "exit": true, "sell": true, "hold_next": false}, "allowed": true}
+  ],
+  "seed": "(sell <-> (holding && (profit && exit))) && (hold_next <-> (holding && !sell))",
+  "deterministic": true
+}

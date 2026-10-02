@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "zeno-speccheck"
+version = "0.1.0"
+description = "Counterexample-guided specification review and evolutionary repair"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.scripts]
+zeno-spec = "zeno_speccheck.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["zeno_speccheck*"]

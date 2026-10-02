@@ -1,0 +1,16 @@
+{
+  "schema": "zeno/tau-project/v1",
+  "name": "Tau sbf authorization with causal realizability and fixed trace requirement",
+  "requirements": [
+    {"id": "AUTH-1", "english": "The grant predicate is true exactly when the input predicate is true.", "formula": "always ((o1[t]:sbf = 1:sbf) <-> (i1[t]:sbf = 1:sbf))"}
+  ],
+  "clauses": [
+    {"id": "access-policy", "variants": [
+      "always ((o1[t]:sbf = 1:sbf) -> (i1[t]:sbf = 1:sbf))",
+      "always ((o1[t]:sbf = 1:sbf) <-> (i1[t]:sbf = 1:sbf))",
+      "always (o1[t]:sbf = 0:sbf)",
+      "always ((o1[t]:sbf = 0:sbf) && (o1[t]:sbf = 1:sbf))"
+    ]}
+  ],
+  "seed": [0]
+}

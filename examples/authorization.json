@@ -1,0 +1,16 @@
+{
+  "schema": "zeno/boolean-project/v1",
+  "name": "Authorization: repair an only-if contract",
+  "inputs": ["authorized"],
+  "outputs": ["grant"],
+  "assumption": "true",
+  "requirements": [
+    {"id": "AUTH-1", "english": "Grant access exactly when authorized.", "formula": "grant <-> authorized"}
+  ],
+  "examples": [
+    {"id": "authorized-accepted", "values": {"authorized": true, "grant": true}, "allowed": true},
+    {"id": "authorized-denied", "values": {"authorized": true, "grant": false}, "allowed": false}
+  ],
+  "seed": "grant -> authorized",
+  "deterministic": true
+}

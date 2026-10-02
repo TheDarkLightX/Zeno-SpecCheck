@@ -1,0 +1,618 @@
+{
+  "artifact_revision": null,
+  "boolean_runs": [
+    {
+      "counterexamples": 8,
+      "evaluated": 64,
+      "max_evaluations": 64,
+      "project": "examples/authorization.json",
+      "project_digest": "238d18e838ed305732d4a9f375df5bc09cba4df3347de81087d251f1815b400f",
+      "report_digest": "786d0e8109ce8b585acacd057c4577c07688a2b26bd95f37a8b4c6867cd22ba4",
+      "seed": 0,
+      "status": "candidate_found",
+      "winner": "(authorized <-> grant)",
+      "winner_check": {
+        "admitted_inputs": 2,
+        "approval": "not_granted",
+        "evidence_kind": "exhaustive_boolean_relation",
+        "formula": "(authorized <-> grant)",
+        "inputs_with_multiple_outputs": 0,
+        "permitted_pairs": 2,
+        "project_digest": "238d18e838ed305732d4a9f375df5bc09cba4df3347de81087d251f1815b400f",
+        "scope": {
+          "assumption": "true",
+          "inputs": [
+            "authorized"
+          ],
+          "outputs": [
+            "grant"
+          ],
+          "total_assignments": 4
+        },
+        "semantic_digest": "9c3958fd131663ce2f56084cf3ecd56ce2d5d7deea19264764445dbdfdf341a6",
+        "status": "pass",
+        "violations": []
+      }
+    },
+    {
+      "counterexamples": 82,
+      "evaluated": 256,
+      "max_evaluations": 256,
+      "project": "examples/deflationary_exit.json",
+      "project_digest": "a67135dafa2927ddeaceb9099b29c4ec110553201cb79825af63b45ab0d49ad0",
+      "report_digest": "8b3d25562402d1dd8a25e958fc7e48f4bfee661d2bc7c9aaae5dbd8a9c8ebf86",
+      "seed": 0,
+      "status": "no_candidate_found",
+      "winner": null,
+      "winner_check": null
+    },
+    {
+      "counterexamples": 80,
+      "evaluated": 512,
+      "max_evaluations": 512,
+      "project": "examples/deflationary_exit.json",
+      "project_digest": "a67135dafa2927ddeaceb9099b29c4ec110553201cb79825af63b45ab0d49ad0",
+      "report_digest": "d34af957e2dffc842d0982d1a534cb628362598bcac53d49cc341cc46d9d8325",
+      "seed": 0,
+      "status": "candidate_found",
+      "winner": "((hold_next <-> (holding && !(sell))) && (sell <-> (holding && (profit || exit))))",
+      "winner_check": {
+        "admitted_inputs": 8,
+        "approval": "not_granted",
+        "evidence_kind": "exhaustive_boolean_relation",
+        "formula": "((hold_next <-> (holding && !(sell))) && (sell <-> (holding && (profit || exit))))",
+        "inputs_with_multiple_outputs": 0,
+        "permitted_pairs": 8,
+        "project_digest": "a67135dafa2927ddeaceb9099b29c4ec110553201cb79825af63b45ab0d49ad0",
+        "scope": {
+          "assumption": "true",
+          "inputs": [
+            "holding",
+            "profit",
+            "exit"
+          ],
+          "outputs": [
+            "sell",
+            "hold_next"
+          ],
+          "total_assignments": 32
+        },
+        "semantic_digest": "2cc00102228198cde5b206bfc92e8bf69a57c76b4bd06a62d409363c230bd063",
+        "status": "pass",
+        "violations": []
+      }
+    }
+  ],
+  "full_ltl_probe": {
+    "approval": "not_granted",
+    "backend": {
+      "log": "",
+      "queries": [
+        {
+          "code_names": [
+            "Time.",
+            "Time.",
+            "Time.",
+            "Time.",
+            "Count.",
+            "Not found.",
+            "Solver error.",
+            "Solver error."
+          ],
+          "errors": "['the command was not found on PATH (name=ltlsynt)', 'ltlsynt not found on PATH; install Spot (>= 2.10) -- realizability is UNKNOWN', 'UNKNOWN: the synthesis backend failed or produced no verdict; realizability could not be decided']",
+          "formula": "(o1[t]:sbf = 0) U (o1[t]:sbf = 1).",
+          "has_error": true,
+          "id": "$realizability",
+          "operation": "realizable",
+          "report": "\u001b[39meliminate_arithmetic_and_quantifiers:\u001b[0m     \u001b[39m76\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\u001b[2mterm_boole_normal_form:\u001b[0m\n\u001b[39meliminate_arithmetic_and_quantifiers:\u001b[0m     \u001b[39m60\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\u001b[2mterm_boole_normal_form:\u001b[0m\n\u001b[39mltlsynt_calls:\u001b[0m                             \u001b[37m1\u001b[0m\n\u001b[31mthe command was not found on PATH (name=ltlsynt)\u001b[0m\n\u001b[31mltlsynt not found on PATH; install Spot (>= 2.10) -- realizability is UNKNOWN\u001b[0m\n\u001b[31mUNKNOWN: the synthesis backend failed or produced no verdict; realizability could not be decided\u001b[0m\n",
+          "value": null
+        }
+      ],
+      "returncode": 0,
+      "runtime": {
+        "declared_source_revision": "31b5b3cfa546d1769cb27c882f131a2914452b55",
+        "module_name": "tau.cpython-312-x86_64-linux-gnu.so",
+        "module_sha256": "0da401031b9e39b1d6553aa38941b3be2ef70215998a0f978db451755589a32b",
+        "revision_attestation": "caller_declared; module bytes hashed"
+      },
+      "schema": "zeno/tau-worker-result/v1",
+      "status": "completed",
+      "timeout_seconds": 15
+    },
+    "counterexample_extraction": "not_available_in_this_adapter",
+    "evidence_kind": "tau_solver_reported",
+    "formula": "(o1[t]:sbf = 0) U (o1[t]:sbf = 1)",
+    "semantics": "causal realizability plus universal trace implication",
+    "status": "unknown"
+  },
+  "schema": "zeno/pilot/v1",
+  "scope": "Two illustrative finite repairs and optional small native Tau experiment",
+  "source_digest": "e11b9ebd58f134a16d6ce61e9f9abc5b2c35ca38b8ad4d4f9e9af5fa268f2bd4",
+  "source_manifest": {
+    "examples/authorization.json": "d19a8443d030de971fe48e92c09df66f51a58d94082de53eb607e1ec3df024cd",
+    "examples/deflationary_exit.json": "a288d28baf5e36fd0be448d34c8ab7784305734531cc1e9614eda7e7b0c8d8e7",
+    "examples/tau_authorization.json": "aaae9e90d3c695be01a569c0a5930b34c020c2f35c2c74fb644a34f71fa1bc72",
+    "scripts/run_pilot.py": "48258c6cca4e63937fb01826d02a52ab6f1e7cb7545af7780ea9703e461573c9",
+    "tests/test_adversarial.py": "e9bce8409c3396e13bd3a586feda1f2264a647d8798fe575d80d210125d19fc2",
+    "tests/test_cli.py": "74dbd45c70d9ade899ee593cecc51d64a351d338ee000b7e71578022dc2b23b3",
+    "tests/test_feedback.py": "59a1a41e9a980625aee244de7ba58f019cca013ab5ec854223b347f3295ef23e",
+    "tests/test_tau_live.py": "2e5f22097a4a12def7eec6a399faea6382f75071093bc848d590e8e133c15003",
+    "zeno_speccheck/__init__.py": "f28083af003467e6db2d95f235a0083e528630e7d7bb90fb3998105355bf665e",
+    "zeno_speccheck/__main__.py": "935a1c1166b0c1ea35a82256345000bf2c73ded718d77773bc27a71ecce28f7d",
+    "zeno_speccheck/checking.py": "947560b5dfaceb3b3d83c66fc782a776ea47c9b8d863d08f3c00e7253ff251f4",
+    "zeno_speccheck/cli.py": "ed1d5d6f7f89a82fbf8def2af14c270eee6e8fc727f28dcc97c5fcddee79460f",
+    "zeno_speccheck/evolution.py": "44dcb2706485964a600ab82b759581f3fec5743c28bb70bb336c32c59a016f01",
+    "zeno_speccheck/feedback.py": "db5bf2cf902d3cbedaa90dc361b10edc004f130783cf0fbde06c7b9ae48ad2bf",
+    "zeno_speccheck/logic.py": "9fecbb83ff36fe165bcfd3360907e9e82e0faede5ac6fcfc50a36de1328c8355",
+    "zeno_speccheck/model.py": "f9bc74870b8d99c22d4c5f7ff33bb02bae1b4e16edea0ac0a15ffa69323175c8",
+    "zeno_speccheck/tau.py": "aa6440365c0436dbe2c1968406f9b9488a1134b643703ac754be67557a0cdd6a",
+    "zeno_speccheck/tau_evolution.py": "3985d4da3b0d300ee1f16b91bb54c755680374449e7e343f03934e9c5a26af67",
+    "zeno_speccheck/tau_worker.py": "938211dc6aec8df49a018cc06d8ca9147b42708aba251952371c6c3eb30a7f34"
+  },
+  "tau_run": {
+    "agent_proposals": [],
+    "approval": "not_granted",
+    "best_candidate": {
+      "check": {
+        "approval": "not_granted",
+        "backend": {
+          "log": "\nTemporal normalization of G specification reached fixpoint after 0 steps, yielding the result: \n(i1[t]:sbf' = 0 || o1[t]:sbf' != 0) && (i1[t]:sbf' != 0 || o1[t]:sbf' = 0)\n\n",
+          "queries": [
+            {
+              "code_names": [
+                "Time.",
+                "Time.",
+                "Time.",
+                "Time.",
+                "Time.",
+                "Time.",
+                "Time.",
+                "Time.",
+                "Time.",
+                "Time.",
+                "Time.",
+                "Time.",
+                "Time.",
+                "Time.",
+                "Time."
+              ],
+              "errors": "[]",
+              "formula": "(always ((o1[t]:sbf = 1:sbf) <-> (i1[t]:sbf = 1:sbf))).",
+              "has_error": false,
+              "id": "$realizability",
+              "operation": "realizable",
+              "report": "\u001b[39mnormalize:\u001b[0m                                               \u001b[39m133\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\t\u001b[2mnormalize:\u001b[0m                                        \u001b[2m93\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\t\t\u001b[39meliminate_arithmetic_and_quantifiers:\u001b[0m     \u001b[39m52\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\t\t\u001b[2mnormalize_temporal_quantifiers:\u001b[0m           \u001b[2m33\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\t\u001b[39mexpand_definitions:\u001b[0m                                \u001b[39m3\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\u001b[2mexpression_paths:\u001b[0m\n\t\u001b[39malways_continuation:\u001b[0m                               \u001b[39m0\u001b[0m  \u001b[39mms\u001b[0m\n\t\t\u001b[2meliminate_arithmetic_and_quantifiers:\u001b[0m    \u001b[2m277\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\t\t\u001b[39mterm_boole_normal_form:\u001b[0m                    \u001b[39m0\u001b[0m  \u001b[39mms\u001b[0m\n\t\t\u001b[2meliminate_arithmetic_and_quantifiers:\u001b[0m     \u001b[2m45\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\t\t\u001b[39mterm_boole_normal_form:\u001b[0m                  \u001b[39m162\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\t\t\u001b[2meliminate_arithmetic_and_quantifiers:\u001b[0m    \u001b[2m127\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\t\t\u001b[39mterm_boole_normal_form:\u001b[0m                    \u001b[39m0\u001b[0m  \u001b[39mms\u001b[0m\n\t\t\u001b[2meliminate_arithmetic_and_quantifiers:\u001b[0m     \u001b[2m42\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\t\t\u001b[39mterm_boole_normal_form:\u001b[0m                  \u001b[39m159\u001b[0m \u001b[39m\u00b5s\u001b[0m\n",
+              "value": true
+            },
+            {
+              "code_names": [
+                "Time.",
+                "Time.",
+                "Time.",
+                "Time.",
+                "Time.",
+                "Time.",
+                "Time.",
+                "Time.",
+                "Time.",
+                "Time.",
+                "Time."
+              ],
+              "errors": "[]",
+              "formula": "((always ((o1[t]:sbf = 1:sbf) <-> (i1[t]:sbf = 1:sbf)))) -> (always ((o1[t]:sbf = 1:sbf) <-> (i1[t]:sbf = 1:sbf))).",
+              "has_error": false,
+              "id": "AUTH-1",
+              "operation": "valid",
+              "report": "\u001b[39mcalculate_fixed_points:\u001b[0m                            \u001b[39m1\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\u001b[2mapply_rec_relations:\u001b[0m                               \u001b[2m1\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\u001b[39mnormalize:\u001b[0m                                        \u001b[39m12\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\t\u001b[2meliminate_arithmetic_and_quantifiers:\u001b[0m      \u001b[2m5\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\t\u001b[39mnormalize_temporal_quantifiers:\u001b[0m            \u001b[39m1\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\u001b[2mexpand_definitions:\u001b[0m\n\u001b[39mnormalize:\u001b[0m                                         \u001b[39m8\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\t\u001b[2meliminate_arithmetic_and_quantifiers:\u001b[0m      \u001b[2m2\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\t\u001b[39mnormalize_temporal_quantifiers:\u001b[0m            \u001b[39m1\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\u001b[2mexpand_definitions:\u001b[0m\n\u001b[39mexpression_paths:\u001b[0m\n",
+              "value": true
+            }
+          ],
+          "returncode": 0,
+          "runtime": {
+            "declared_source_revision": "31b5b3cfa546d1769cb27c882f131a2914452b55",
+            "module_name": "tau.cpython-312-x86_64-linux-gnu.so",
+            "module_sha256": "0da401031b9e39b1d6553aa38941b3be2ef70215998a0f978db451755589a32b",
+            "revision_attestation": "caller_declared; module bytes hashed"
+          },
+          "schema": "zeno/tau-worker-result/v1",
+          "status": "completed",
+          "timeout_seconds": 15
+        },
+        "counterexample_extraction": "not_available_in_this_adapter",
+        "evidence_kind": "tau_solver_reported",
+        "formula": "(always ((o1[t]:sbf = 1:sbf) <-> (i1[t]:sbf = 1:sbf)))",
+        "semantics": "causal realizability plus universal trace implication",
+        "status": "pass"
+      },
+      "generation": 1,
+      "genome": [
+        1
+      ],
+      "id": "6fd1a53d7c84f0514e9400c1bda537fa1a7fe25e32a0ba92d1903071befbe826",
+      "origin": "clause_mutation",
+      "parents": [
+        "a1fb578800807a6d9ead6c8cbdc38d87425fbdbe8f58bfa2230f94ba0698e057"
+      ]
+    },
+    "candidates": [
+      {
+        "check": {
+          "approval": "not_granted",
+          "backend": {
+            "log": "\nTemporal normalization of G specification reached fixpoint after 0 steps, yielding the result: \ni1[t]:sbf' = 0 || o1[t]:sbf' != 0\n\n",
+            "queries": [
+              {
+                "code_names": [
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time."
+                ],
+                "errors": "[]",
+                "formula": "(always ((o1[t]:sbf = 1:sbf) -> (i1[t]:sbf = 1:sbf))).",
+                "has_error": false,
+                "id": "$realizability",
+                "operation": "realizable",
+                "report": "\u001b[39mnormalize:\u001b[0m                                                \u001b[39m97\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\t\u001b[2mnormalize:\u001b[0m                                        \u001b[2m66\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\t\t\u001b[39meliminate_arithmetic_and_quantifiers:\u001b[0m     \u001b[39m33\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\t\t\u001b[2mnormalize_temporal_quantifiers:\u001b[0m           \u001b[2m25\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\t\u001b[39mexpand_definitions:\u001b[0m                                \u001b[39m2\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\u001b[2mexpression_paths:\u001b[0m\n\t\u001b[39malways_continuation:\u001b[0m                               \u001b[39m0\u001b[0m  \u001b[39mms\u001b[0m\n\t\t\u001b[2meliminate_arithmetic_and_quantifiers:\u001b[0m    \u001b[2m392\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\t\t\u001b[39mterm_boole_normal_form:\u001b[0m                    \u001b[39m0\u001b[0m  \u001b[39mms\u001b[0m\n\t\t\u001b[2meliminate_arithmetic_and_quantifiers:\u001b[0m     \u001b[2m24\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\t\t\u001b[39mterm_boole_normal_form:\u001b[0m                  \u001b[39m121\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\t\t\u001b[2meliminate_arithmetic_and_quantifiers:\u001b[0m     \u001b[2m97\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\t\t\u001b[39mterm_boole_normal_form:\u001b[0m                    \u001b[39m0\u001b[0m  \u001b[39mms\u001b[0m\n\t\t\u001b[2meliminate_arithmetic_and_quantifiers:\u001b[0m     \u001b[2m55\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\t\t\u001b[39mterm_boole_normal_form:\u001b[0m                   \u001b[39m99\u001b[0m \u001b[39m\u00b5s\u001b[0m\n",
+                "value": true
+              },
+              {
+                "code_names": [
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time."
+                ],
+                "errors": "[]",
+                "formula": "((always ((o1[t]:sbf = 1:sbf) -> (i1[t]:sbf = 1:sbf)))) -> (always ((o1[t]:sbf = 1:sbf) <-> (i1[t]:sbf = 1:sbf))).",
+                "has_error": false,
+                "id": "AUTH-1",
+                "operation": "valid",
+                "report": "\u001b[39mcalculate_fixed_points:\u001b[0m                                    \u001b[39m8\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\u001b[2mapply_rec_relations:\u001b[0m                                       \u001b[2m1\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\u001b[39mnormalize:\u001b[0m                                               \u001b[39m456\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\t\u001b[2meliminate_arithmetic_and_quantifiers:\u001b[0m             \u001b[2m74\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\t\u001b[39mnormalize_temporal_quantifiers:\u001b[0m                  \u001b[39m372\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\u001b[2mexpand_definitions:\u001b[0m                                        \u001b[2m4\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\u001b[39meliminate_arithmetic_and_quantifiers:\u001b[0m                      \u001b[39m4\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\u001b[2mnormalize_temporal_quantifiers:\u001b[0m                            \u001b[2m1\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\u001b[39meliminate_arithmetic_and_quantifiers:\u001b[0m                     \u001b[39m72\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\u001b[2mnormalize_temporal_quantifiers:\u001b[0m                          \u001b[2m296\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\u001b[39mnormalize:\u001b[0m                                               \u001b[39m284\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\t\u001b[2meliminate_arithmetic_and_quantifiers:\u001b[0m             \u001b[2m65\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\t\u001b[39mnormalize_temporal_quantifiers:\u001b[0m                  \u001b[39m209\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\u001b[2mexpand_definitions:\u001b[0m                                        \u001b[2m4\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\u001b[39mexpression_paths:\u001b[0m\n\t\u001b[2malways_continuation:\u001b[0m                            \u001b[2m1.08\u001b[0m  \u001b[2mms\u001b[0m\n\t\t\u001b[39meliminate_arithmetic_and_quantifiers:\u001b[0m    \u001b[39m375\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\t\t\u001b[2mterm_boole_normal_form:\u001b[0m                    \u001b[2m0\u001b[0m  \u001b[2mms\u001b[0m\n\t\t\u001b[39meliminate_arithmetic_and_quantifiers:\u001b[0m     \u001b[39m24\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\t\t\u001b[2mterm_boole_normal_form:\u001b[0m                  \u001b[2m113\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\t\t\u001b[39meliminate_arithmetic_and_quantifiers:\u001b[0m     \u001b[39m19\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\t\t\u001b[2mterm_boole_normal_form:\u001b[0m                    \u001b[2m0\u001b[0m  \u001b[2mms\u001b[0m\n\t\t\u001b[39meliminate_arithmetic_and_quantifiers:\u001b[0m     \u001b[39m92\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\t\t\u001b[2mterm_boole_normal_form:\u001b[0m                    \u001b[2m0\u001b[0m  \u001b[2mms\u001b[0m\n\t\t\u001b[39meliminate_arithmetic_and_quantifiers:\u001b[0m     \u001b[39m21\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\t\t\u001b[2mterm_boole_normal_form:\u001b[0m                  \u001b[2m122\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\t\u001b[39munbounded_continuation:\u001b[0m                         \u001b[39m2.30\u001b[0m  \u001b[39mms\u001b[0m\n\t\t\u001b[2meliminate_arithmetic_and_quantifiers:\u001b[0m    \u001b[2m618\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\t\t\u001b[39mterm_boole_normal_form:\u001b[0m                  \u001b[39m130\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\t\t\u001b[2meliminate_arithmetic_and_quantifiers:\u001b[0m    \u001b[2m386\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\t\t\u001b[39mterm_boole_normal_form:\u001b[0m                    \u001b[39m0\u001b[0m  \u001b[39mms\u001b[0m\n\t\t\u001b[2meliminate_arithmetic_and_quantifiers:\u001b[0m    \u001b[2m104\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\t\t\u001b[39mterm_boole_normal_form:\u001b[0m                  \u001b[39m487\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\t\t\u001b[2meliminate_arithmetic_and_quantifiers:\u001b[0m     \u001b[2m99\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\t\t\u001b[39mterm_boole_normal_form:\u001b[0m                  \u001b[39m236\u001b[0m \u001b[39m\u00b5s\u001b[0m\n",
+                "value": false
+              }
+            ],
+            "returncode": 0,
+            "runtime": {
+              "declared_source_revision": "31b5b3cfa546d1769cb27c882f131a2914452b55",
+              "module_name": "tau.cpython-312-x86_64-linux-gnu.so",
+              "module_sha256": "0da401031b9e39b1d6553aa38941b3be2ef70215998a0f978db451755589a32b",
+              "revision_attestation": "caller_declared; module bytes hashed"
+            },
+            "schema": "zeno/tau-worker-result/v1",
+            "status": "completed",
+            "timeout_seconds": 15
+          },
+          "counterexample_extraction": "not_available_in_this_adapter",
+          "evidence_kind": "tau_solver_reported",
+          "formula": "(always ((o1[t]:sbf = 1:sbf) -> (i1[t]:sbf = 1:sbf)))",
+          "semantics": "causal realizability plus universal trace implication",
+          "status": "fail"
+        },
+        "generation": 0,
+        "genome": [
+          0
+        ],
+        "id": "a1fb578800807a6d9ead6c8cbdc38d87425fbdbe8f58bfa2230f94ba0698e057",
+        "origin": "seed",
+        "parents": []
+      },
+      {
+        "check": {
+          "approval": "not_granted",
+          "backend": {
+            "log": "\nTemporal normalization of G specification reached fixpoint after 0 steps, yielding the result: \no1[t]:sbf = 0\n\n",
+            "queries": [
+              {
+                "code_names": [
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time."
+                ],
+                "errors": "[]",
+                "formula": "(always (o1[t]:sbf = 0:sbf)).",
+                "has_error": false,
+                "id": "$realizability",
+                "operation": "realizable",
+                "report": "\u001b[39mnormalize:\u001b[0m                                                \u001b[39m19\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\t\u001b[2mnormalize:\u001b[0m                                         \u001b[2m1\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\t\u001b[39mexpand_definitions:\u001b[0m                                \u001b[39m1\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\u001b[2mexpression_paths:\u001b[0m\n\t\u001b[39malways_continuation:\u001b[0m                               \u001b[39m0\u001b[0m  \u001b[39mms\u001b[0m\n\t\t\u001b[2meliminate_arithmetic_and_quantifiers:\u001b[0m    \u001b[2m140\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\t\t\u001b[39mterm_boole_normal_form:\u001b[0m                    \u001b[39m0\u001b[0m  \u001b[39mms\u001b[0m\n\t\t\u001b[2meliminate_arithmetic_and_quantifiers:\u001b[0m     \u001b[2m11\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\t\t\u001b[39mterm_boole_normal_form:\u001b[0m                   \u001b[39m48\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\t\t\u001b[2meliminate_arithmetic_and_quantifiers:\u001b[0m     \u001b[2m27\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\t\t\u001b[39mterm_boole_normal_form:\u001b[0m                    \u001b[39m0\u001b[0m  \u001b[39mms\u001b[0m\n\t\t\u001b[2meliminate_arithmetic_and_quantifiers:\u001b[0m     \u001b[2m10\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\t\t\u001b[39mterm_boole_normal_form:\u001b[0m                   \u001b[39m42\u001b[0m \u001b[39m\u00b5s\u001b[0m\n",
+                "value": true
+              },
+              {
+                "code_names": [
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time."
+                ],
+                "errors": "[]",
+                "formula": "((always (o1[t]:sbf = 0:sbf))) -> (always ((o1[t]:sbf = 1:sbf) <-> (i1[t]:sbf = 1:sbf))).",
+                "has_error": false,
+                "id": "AUTH-1",
+                "operation": "valid",
+                "report": "\u001b[39mcalculate_fixed_points:\u001b[0m                                    \u001b[39m9\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\u001b[2mapply_rec_relations:\u001b[0m                                       \u001b[2m2\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\u001b[39mnormalize:\u001b[0m                                               \u001b[39m430\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\t\u001b[2meliminate_arithmetic_and_quantifiers:\u001b[0m             \u001b[2m71\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\t\u001b[39mnormalize_temporal_quantifiers:\u001b[0m                  \u001b[39m349\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\u001b[2mexpand_definitions:\u001b[0m                                        \u001b[2m4\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\u001b[39meliminate_arithmetic_and_quantifiers:\u001b[0m                      \u001b[39m4\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\u001b[2mnormalize_temporal_quantifiers:\u001b[0m                            \u001b[2m1\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\u001b[39meliminate_arithmetic_and_quantifiers:\u001b[0m                     \u001b[39m67\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\u001b[2mnormalize_temporal_quantifiers:\u001b[0m                          \u001b[2m234\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\u001b[39mnormalize:\u001b[0m                                               \u001b[39m291\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\t\u001b[2meliminate_arithmetic_and_quantifiers:\u001b[0m             \u001b[2m59\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\t\u001b[39mnormalize_temporal_quantifiers:\u001b[0m                  \u001b[39m221\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\u001b[2mexpand_definitions:\u001b[0m                                        \u001b[2m4\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\u001b[39mexpression_paths:\u001b[0m\n\t\u001b[2malways_continuation:\u001b[0m                             \u001b[2m455\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\t\t\u001b[39meliminate_arithmetic_and_quantifiers:\u001b[0m    \u001b[39m120\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\t\t\u001b[2mterm_boole_normal_form:\u001b[0m                    \u001b[2m0\u001b[0m  \u001b[2mms\u001b[0m\n\t\t\u001b[39meliminate_arithmetic_and_quantifiers:\u001b[0m     \u001b[39m10\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\t\t\u001b[2mterm_boole_normal_form:\u001b[0m                   \u001b[2m47\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\t\t\u001b[39meliminate_arithmetic_and_quantifiers:\u001b[0m     \u001b[39m25\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\t\t\u001b[2mterm_boole_normal_form:\u001b[0m                    \u001b[2m0\u001b[0m  \u001b[2mms\u001b[0m\n\t\t\u001b[39meliminate_arithmetic_and_quantifiers:\u001b[0m     \u001b[39m10\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\t\t\u001b[2mterm_boole_normal_form:\u001b[0m                   \u001b[2m42\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\t\u001b[39munbounded_continuation:\u001b[0m                         \u001b[39m1.86\u001b[0m  \u001b[39mms\u001b[0m\n\t\t\u001b[2meliminate_arithmetic_and_quantifiers:\u001b[0m    \u001b[2m633\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\t\t\u001b[39mterm_boole_normal_form:\u001b[0m                   \u001b[39m66\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\t\t\u001b[2meliminate_arithmetic_and_quantifiers:\u001b[0m    \u001b[2m173\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\t\t\u001b[39mterm_boole_normal_form:\u001b[0m                    \u001b[39m0\u001b[0m  \u001b[39mms\u001b[0m\n\t\t\u001b[2meliminate_arithmetic_and_quantifiers:\u001b[0m     \u001b[2m95\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\t\t\u001b[39mterm_boole_normal_form:\u001b[0m                  \u001b[39m218\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\t\t\u001b[2meliminate_arithmetic_and_quantifiers:\u001b[0m     \u001b[2m57\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\t\t\u001b[39mterm_boole_normal_form:\u001b[0m                  \u001b[39m418\u001b[0m \u001b[39m\u00b5s\u001b[0m\n",
+                "value": false
+              }
+            ],
+            "returncode": 0,
+            "runtime": {
+              "declared_source_revision": "31b5b3cfa546d1769cb27c882f131a2914452b55",
+              "module_name": "tau.cpython-312-x86_64-linux-gnu.so",
+              "module_sha256": "0da401031b9e39b1d6553aa38941b3be2ef70215998a0f978db451755589a32b",
+              "revision_attestation": "caller_declared; module bytes hashed"
+            },
+            "schema": "zeno/tau-worker-result/v1",
+            "status": "completed",
+            "timeout_seconds": 15
+          },
+          "counterexample_extraction": "not_available_in_this_adapter",
+          "evidence_kind": "tau_solver_reported",
+          "formula": "(always (o1[t]:sbf = 0:sbf))",
+          "semantics": "causal realizability plus universal trace implication",
+          "status": "fail"
+        },
+        "generation": 1,
+        "genome": [
+          2
+        ],
+        "id": "9c15e88b55689074faede79b047e5039220b42de836d33cc2f9080ffb62315ab",
+        "origin": "clause_mutation",
+        "parents": [
+          "a1fb578800807a6d9ead6c8cbdc38d87425fbdbe8f58bfa2230f94ba0698e057"
+        ]
+      },
+      {
+        "check": {
+          "approval": "not_granted",
+          "backend": {
+            "log": "\nTemporal normalization of G specification reached fixpoint after 0 steps, yielding the result: \n(i1[t]:sbf' = 0 || o1[t]:sbf' != 0) && (i1[t]:sbf' != 0 || o1[t]:sbf' = 0)\n\n",
+            "queries": [
+              {
+                "code_names": [
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time."
+                ],
+                "errors": "[]",
+                "formula": "(always ((o1[t]:sbf = 1:sbf) <-> (i1[t]:sbf = 1:sbf))).",
+                "has_error": false,
+                "id": "$realizability",
+                "operation": "realizable",
+                "report": "\u001b[39mnormalize:\u001b[0m                                               \u001b[39m133\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\t\u001b[2mnormalize:\u001b[0m                                        \u001b[2m93\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\t\t\u001b[39meliminate_arithmetic_and_quantifiers:\u001b[0m     \u001b[39m52\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\t\t\u001b[2mnormalize_temporal_quantifiers:\u001b[0m           \u001b[2m33\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\t\u001b[39mexpand_definitions:\u001b[0m                                \u001b[39m3\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\u001b[2mexpression_paths:\u001b[0m\n\t\u001b[39malways_continuation:\u001b[0m                               \u001b[39m0\u001b[0m  \u001b[39mms\u001b[0m\n\t\t\u001b[2meliminate_arithmetic_and_quantifiers:\u001b[0m    \u001b[2m277\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\t\t\u001b[39mterm_boole_normal_form:\u001b[0m                    \u001b[39m0\u001b[0m  \u001b[39mms\u001b[0m\n\t\t\u001b[2meliminate_arithmetic_and_quantifiers:\u001b[0m     \u001b[2m45\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\t\t\u001b[39mterm_boole_normal_form:\u001b[0m                  \u001b[39m162\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\t\t\u001b[2meliminate_arithmetic_and_quantifiers:\u001b[0m    \u001b[2m127\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\t\t\u001b[39mterm_boole_normal_form:\u001b[0m                    \u001b[39m0\u001b[0m  \u001b[39mms\u001b[0m\n\t\t\u001b[2meliminate_arithmetic_and_quantifiers:\u001b[0m     \u001b[2m42\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\t\t\u001b[39mterm_boole_normal_form:\u001b[0m                  \u001b[39m159\u001b[0m \u001b[39m\u00b5s\u001b[0m\n",
+                "value": true
+              },
+              {
+                "code_names": [
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time."
+                ],
+                "errors": "[]",
+                "formula": "((always ((o1[t]:sbf = 1:sbf) <-> (i1[t]:sbf = 1:sbf)))) -> (always ((o1[t]:sbf = 1:sbf) <-> (i1[t]:sbf = 1:sbf))).",
+                "has_error": false,
+                "id": "AUTH-1",
+                "operation": "valid",
+                "report": "\u001b[39mcalculate_fixed_points:\u001b[0m                            \u001b[39m1\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\u001b[2mapply_rec_relations:\u001b[0m                               \u001b[2m1\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\u001b[39mnormalize:\u001b[0m                                        \u001b[39m12\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\t\u001b[2meliminate_arithmetic_and_quantifiers:\u001b[0m      \u001b[2m5\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\t\u001b[39mnormalize_temporal_quantifiers:\u001b[0m            \u001b[39m1\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\u001b[2mexpand_definitions:\u001b[0m\n\u001b[39mnormalize:\u001b[0m                                         \u001b[39m8\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\t\u001b[2meliminate_arithmetic_and_quantifiers:\u001b[0m      \u001b[2m2\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\t\u001b[39mnormalize_temporal_quantifiers:\u001b[0m            \u001b[39m1\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\u001b[2mexpand_definitions:\u001b[0m\n\u001b[39mexpression_paths:\u001b[0m\n",
+                "value": true
+              }
+            ],
+            "returncode": 0,
+            "runtime": {
+              "declared_source_revision": "31b5b3cfa546d1769cb27c882f131a2914452b55",
+              "module_name": "tau.cpython-312-x86_64-linux-gnu.so",
+              "module_sha256": "0da401031b9e39b1d6553aa38941b3be2ef70215998a0f978db451755589a32b",
+              "revision_attestation": "caller_declared; module bytes hashed"
+            },
+            "schema": "zeno/tau-worker-result/v1",
+            "status": "completed",
+            "timeout_seconds": 15
+          },
+          "counterexample_extraction": "not_available_in_this_adapter",
+          "evidence_kind": "tau_solver_reported",
+          "formula": "(always ((o1[t]:sbf = 1:sbf) <-> (i1[t]:sbf = 1:sbf)))",
+          "semantics": "causal realizability plus universal trace implication",
+          "status": "pass"
+        },
+        "generation": 1,
+        "genome": [
+          1
+        ],
+        "id": "6fd1a53d7c84f0514e9400c1bda537fa1a7fe25e32a0ba92d1903071befbe826",
+        "origin": "clause_mutation",
+        "parents": [
+          "a1fb578800807a6d9ead6c8cbdc38d87425fbdbe8f58bfa2230f94ba0698e057"
+        ]
+      },
+      {
+        "check": {
+          "approval": "not_granted",
+          "backend": {
+            "log": "",
+            "queries": [
+              {
+                "code_names": [
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time."
+                ],
+                "errors": "[]",
+                "formula": "(always ((o1[t]:sbf = 0:sbf) && (o1[t]:sbf = 1:sbf))).",
+                "has_error": false,
+                "id": "$realizability",
+                "operation": "realizable",
+                "report": "\u001b[39mnormalize:\u001b[0m                                                \u001b[39m18\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\t\u001b[2mnormalize:\u001b[0m                                        \u001b[2m11\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\t\t\u001b[39meliminate_arithmetic_and_quantifiers:\u001b[0m      \u001b[39m4\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\t\t\u001b[2mnormalize_temporal_quantifiers:\u001b[0m            \u001b[2m2\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\t\u001b[39mexpand_definitions:\u001b[0m                                \u001b[39m0\u001b[0m  \u001b[39mms\u001b[0m\n\u001b[2mexpression_paths:\u001b[0m                                          \u001b[2m2\u001b[0m \u001b[2m\u00b5s\u001b[0m\n",
+                "value": false
+              },
+              {
+                "code_names": [
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time.",
+                  "Time."
+                ],
+                "errors": "[]",
+                "formula": "((always ((o1[t]:sbf = 0:sbf) && (o1[t]:sbf = 1:sbf)))) -> (always ((o1[t]:sbf = 1:sbf) <-> (i1[t]:sbf = 1:sbf))).",
+                "has_error": false,
+                "id": "AUTH-1",
+                "operation": "valid",
+                "report": "\u001b[39mcalculate_fixed_points:\u001b[0m                            \u001b[39m9\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\u001b[2mapply_rec_relations:\u001b[0m                               \u001b[2m1\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\u001b[39mnormalize:\u001b[0m                                       \u001b[39m195\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\t\u001b[2meliminate_arithmetic_and_quantifiers:\u001b[0m     \u001b[2m76\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\t\u001b[39mnormalize_temporal_quantifiers:\u001b[0m          \u001b[39m109\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\u001b[2mexpand_definitions:\u001b[0m\n\u001b[39meliminate_arithmetic_and_quantifiers:\u001b[0m              \u001b[39m3\u001b[0m \u001b[39m\u00b5s\u001b[0m\n\u001b[2mnormalize_temporal_quantifiers:\u001b[0m                    \u001b[2m1\u001b[0m \u001b[2m\u00b5s\u001b[0m\n\u001b[39mnormalize:\u001b[0m\n\u001b[2mexpand_definitions:\u001b[0m\n\u001b[39mexpression_paths:\u001b[0m\n",
+                "value": true
+              }
+            ],
+            "returncode": 0,
+            "runtime": {
+              "declared_source_revision": "31b5b3cfa546d1769cb27c882f131a2914452b55",
+              "module_name": "tau.cpython-312-x86_64-linux-gnu.so",
+              "module_sha256": "0da401031b9e39b1d6553aa38941b3be2ef70215998a0f978db451755589a32b",
+              "revision_attestation": "caller_declared; module bytes hashed"
+            },
+            "schema": "zeno/tau-worker-result/v1",
+            "status": "completed",
+            "timeout_seconds": 15
+          },
+          "counterexample_extraction": "not_available_in_this_adapter",
+          "evidence_kind": "tau_solver_reported",
+          "formula": "(always ((o1[t]:sbf = 0:sbf) && (o1[t]:sbf = 1:sbf)))",
+          "semantics": "causal realizability plus universal trace implication",
+          "status": "fail"
+        },
+        "generation": 1,
+        "genome": [
+          3
+        ],
+        "id": "f51cc759c5b8ba4229a38aa7e926eab75f94175b3c4029dd1d65c004cf5f0810",
+        "origin": "clause_mutation",
+        "parents": [
+          "a1fb578800807a6d9ead6c8cbdc38d87425fbdbe8f58bfa2230f94ba0698e057"
+        ]
+      }
+    ],
+    "evaluated_candidates": 4,
+    "limitations": [
+      "Native solver verdicts are not independently checked proof certificates.",
+      "Raw Tau search deduplicates source, not arbitrary temporal semantic equivalence.",
+      "No general temporal witness extraction; failed requirements remain verdicts with diagnostics.",
+      "An agent proposal supplies a whole formula; symbolic search mutates configured clause variants."
+    ],
+    "project_digest": "1a1f08e6c61ce9de5478bb9a308d8351d86feec259719aaab7bfc92dbabb1adc",
+    "schema": "zeno/tau-evolution-report/v1",
+    "search": {
+      "generations": 4,
+      "max_evaluations": 16,
+      "population": 4,
+      "proposal_digest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "seed": 0
+    },
+    "status": "candidate_found"
+  }
+}
