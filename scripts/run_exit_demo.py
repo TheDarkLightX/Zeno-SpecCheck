@@ -1,6 +1,7 @@
 """Reproduce the exit-policy workflow; no neural model or API key is invoked."""
 
 import argparse
+from hashlib import sha256
 from itertools import product
 import json
 from pathlib import Path
@@ -68,26 +69,32 @@ def main():
     save('session.json', final, compact=True)
     save('replay.json', replay)
     (destination / 'review.html').write_text(render_html(review), encoding='utf-8')
+    expr = parse(final['best_candidate']['check']['formula'], project.variables)
+    exported = export_tau(project, expr, 'sbf')
+    tau_path = destination / 'evolved.tau'
+    tau_path.write_text(exported['formula'] + '.\n', encoding='utf-8')
+    tau_bytes = tau_path.read_bytes()
+    tau_artifact = {'path':tau_path.name, 'sha256':sha256(tau_bytes).hexdigest(),
+                    'algebra':exported['algebra'], 'streams':exported['streams']}
     summary = {'schema':'zeno/exit-demo/v1', 'source_digest':source,
                'project_digest':project.identity, 'session_digest':digest(final),
                'rounds':review['progress'], 'evaluated_candidates':final['evaluated_candidates'],
                'unique_candidates':final['unique_candidates'], 'retained_witnesses':len(final['counterexamples']),
                'changed_inputs':[row for row in review['decision_rows'] if row['changed']],
-               'winner':final['best_candidate']['check'], 'independent_transition_oracle':'all 32 assignments agree',
+               'winner':final['best_candidate']['check'], 'tau_artifact':tau_artifact,
+               'independent_transition_oracle':'all 32 assignments agree',
                'proposal_provenance':'Round 3 replays an assistant-authored simplification fixture; no model is invoked by this script.',
                'approval':'not_granted', 'benchmark_claim':'No superiority claim; one illustrative task with fixed seeds.'}
     if args.tau_python:
         config = TauConfig(args.tau_python, args.tau_module_dir, 15, args.tau_source_revision)
-        expr = parse(final['best_candidate']['check']['formula'], project.variables)
-        exported = export_tau(project, expr, 'sbf')
-        native = check_tau(exported['formula'], exported['requirements'], config)
-        save('tau-crosscheck.json', {'translation':exported, 'check':native})
+        native = check_tau(tau_bytes.decode('utf-8'), exported['requirements'], config)
+        save('tau-crosscheck.json', {'artifact':tau_artifact, 'translation':exported, 'check':native})
         summary['tau_status'] = native['status']
     else:
         summary['tau_status'] = 'not_run'
     save('summary.json', summary)
     print(json.dumps({'out':str(destination), 'rounds':[(r['evaluated_candidates'],r['remaining_violations']) for r in review['progress']],
-                      'replay':replay['status'], 'tau':summary['tau_status']}))
+                      'replay':replay['status'], 'tau':summary['tau_status'], 'tau_spec':str(tau_path)}))
     return 0 if summary['tau_status'] in ('pass','not_run') else 2
 
 

@@ -52,6 +52,18 @@ The other six input cases retain their outputs. The complete relation gains two 
 
 ## Reproduce and inspect
 
+The actual exported Tau source is **[evolved.tau](../evidence/exit-demo/evolved.tau)**. The demo always writes `<out>/evolved.tau`, even without a Tau installation. This is the selected Boolean candidate translated to a Tau formula, with explicit Boolean-domain guards on the `sbf` streams.
+
+| Tau stream | Meaning |
+|---|---|
+| `i1` | `holding` |
+| `i2` | `profit` |
+| `i3` | `exit` |
+| `o1` | `sell` |
+| `o2` | `hold_next` |
+
+`hold_next` remains an output of this one-step relation; the spec does not feed it back into `holding` at the next tick. The summary records the source file's SHA-256 and stream mapping. When a Tau runtime is supplied, the cross-check reads the saved file and records that same hash.
+
 ```bash
 python scripts/run_exit_demo.py --out runs/exit-demo
 python -m zeno_speccheck session-replay examples/deflationary_exit.json runs/exit-demo/session.json

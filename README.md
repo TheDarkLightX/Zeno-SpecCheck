@@ -29,10 +29,13 @@ The exit example is an independently written illustration: a held position can b
 
 ```bash
 python scripts/run_exit_demo.py --out runs/exit-demo
+# The generated Tau specification is runs/exit-demo/evolved.tau.
 # Open runs/exit-demo/review.html in a browser.
 ```
 
 The deterministic demo runs three rounds: 64 candidate evaluations leave one violation; 128 more with retained candidates find a valid repair; a final round checks an assistant-authored simplification proposal in 10 evaluations. The first two rounds receive no hand-written correct candidate. The last round replays a proposal fixture; the script does not call a neural model.
+
+**Generated Tau specification: [evidence/exit-demo/evolved.tau](evidence/exit-demo/evolved.tau).** Every demo run writes this file, including runs without an installed Tau runtime. With a runtime configured, the native cross-check reads the saved file; the summary and cross-check record its SHA-256. The streams are `i1 = holding`, `i2 = profit`, `i3 = exit`, `o1 = sell`, and `o2 = hold_next`.
 
 See the [worked walkthrough](docs/exit-workflow.md) and [recorded summary](evidence/exit-demo/summary.json). The generated standalone HTML review shows English/formula requirements, initial counterexamples, per-round progress, candidate lineage, and before/after output tables. It uses no external assets or network calls.
 

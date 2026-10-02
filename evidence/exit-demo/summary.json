@@ -108,6 +108,18 @@
   "schema": "zeno/exit-demo/v1",
   "session_digest": "7ec179461795911c6f2b1b754461db1ab429dcb504b45aa2c01bac3964b50e7a",
   "source_digest": "4f0f7ab0a7e7cc89d45f3880b5f86be13dd4f5d3a9e1f210327f8d334182a01e",
+  "tau_artifact": {
+    "algebra": "sbf",
+    "path": "evolved.tau",
+    "sha256": "d407703c6b65fe9acf1a2e954ccfda490c4c9a19ad2c07fbb27364c80b7effcb",
+    "streams": {
+      "exit": "i3",
+      "hold_next": "o2",
+      "holding": "i1",
+      "profit": "i2",
+      "sell": "o1"
+    }
+  },
   "tau_status": "pass",
   "unique_candidates": 183,
   "winner": {
